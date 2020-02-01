@@ -1,0 +1,35 @@
+.el-header,.el-main,.el-footer{
+	width: 1348px;
+	margin: 0 auto;
+	padding: 0;
+	overflow: unset;
+}
+$line-height : 40px;
+.el-header{
+	background-color: #f6f5ec;
+	height: $line-height !important;
+	line-height: $line-height;
+	font-size: 12px;
+	width: 100%;
+	.MyHeader{
+		height: $line-height;
+		line-height: $line-height;
+		color: #8a8c8e;
+		width: 1190px;
+		margin: 0 auto;
+		.city{
+			.changecity{
+				color: #666;
+				border: 1px solid #E5E5E5;
+				background-color: #F4F4F4;
+				border-radius: 2px;
+				&:hover{color: #FE8C00;}
+			}
+		}
+		.user{
+			margin-left: -90px;
+			a:nth-child(1){color: #FE8C00;}
+			a:nth-child(2){color: #999;}
+		}
+	}
+}
