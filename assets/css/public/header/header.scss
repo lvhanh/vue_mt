@@ -1,22 +1,26 @@
 .el-header,.el-main,.el-footer{
-	width: 1348px;
+	width: 100%;
 	margin: 0 auto;
 	padding: 0;
 	overflow: unset;
 }
 $line-height : 40px;
 .el-header{
-	background-color: #f6f5ec;
+	background-color: #F8F8F8;
 	height: $line-height !important;
 	line-height: $line-height;
 	font-size: 12px;
-	width: 100%;
+	top: 0;
 	.MyHeader{
 		height: $line-height;
 		line-height: $line-height;
-		color: #8a8c8e;
+		color: #999;
 		width: 1190px;
 		margin: 0 auto;
+		li{
+			list-style: none;
+			margin: 0;
+		}
 		.city{
 			.changecity{
 				color: #666;
@@ -30,6 +34,55 @@ $line-height : 40px;
 			margin-left: -90px;
 			a:nth-child(1){color: #FE8C00;}
 			a:nth-child(2){color: #999;}
+		}
+		.nav{
+			float: right;
+			height: $line-height;
+			line-height: $line-height;
+			//text-align: right;
+			margin: 0 auto;
+			a{
+				color: #999;
+				&:hover{color: #FE8C00;}
+			}
+			>li{
+				float: left;
+				position: relative;
+				height: $line-height;
+				line-height: $line-height;
+				margin: 0 14px;
+			}
+			.navFirst{
+				margin: 0px;
+				.navFirstDown{
+					//left: -9999px;
+					margin: 0 auto;
+					padding: 0;
+					position: absolute;
+					display: flex;
+					flex-direction: column;
+					text-align: center;
+					z-index: 1000;
+					//width: 82px;
+					li{
+						padding: 0;
+						margin: 0 auto;
+						//display: inline-block;
+						text-align: center;
+						//left: 0;
+					}
+				}
+				&:hover .navFirstDown{
+					//left: -100px;
+				}
+			}
+			li{
+				float: left;
+				position: relative;
+				height: $line-height;
+				line-height: $line-height;
+				margin: 0 14px;
+			}
 		}
 	}
 }
