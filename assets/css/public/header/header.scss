@@ -4,24 +4,25 @@
 	padding: 0;
 	overflow: unset;
 }
-$line-height : 40px;
+
+$line-height : 60px;
+
 .el-header{
-	background-color: #F8F8F8;
-	height: $line-height !important;
-	line-height: $line-height;
-	font-size: 12px;
-	top: 0;
+	height: $line-height;
+	background: #F8F8F8;
 	.MyHeader{
 		height: $line-height;
 		line-height: $line-height;
 		color: #999;
+		font-size: 12px;
 		width: 1190px;
 		margin: 0 auto;
+		z-index: 9;
 		li{
 			list-style: none;
-			margin: 0;
 		}
 		.city{
+			line-height: 60px;
 			.changecity{
 				color: #666;
 				border: 1px solid #E5E5E5;
@@ -31,57 +32,142 @@ $line-height : 40px;
 			}
 		}
 		.user{
-			margin-left: -90px;
+			line-height: 60px;
 			a:nth-child(1){color: #FE8C00;}
 			a:nth-child(2){color: #999;}
 		}
-		.nav{
+		.m-nav{
 			float: right;
+			margin: 0;
+			padding: 0;
 			height: $line-height;
 			line-height: $line-height;
-			//text-align: right;
-			margin: 0 auto;
-			a{
-				color: #999;
-				&:hover{color: #FE8C00;}
-			}
-			>li{
-				float: left;
-				position: relative;
+			z-index: 999;
+			.nav{
+				float: right;
 				height: $line-height;
-				line-height: $line-height;
-				margin: 0 14px;
-			}
-			.navFirst{
-				margin: 0px;
-				.navFirstDown{
-					//left: -9999px;
-					margin: 0 auto;
-					padding: 0;
-					position: absolute;
-					display: flex;
-					flex-direction: column;
+				//line-height: $line-height;
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				>li{
+					float: left;
+					width: 78px;
 					text-align: center;
-					z-index: 1000;
-					//width: 82px;
-					li{
-						padding: 0;
-						margin: 0 auto;
-						//display: inline-block;
-						text-align: center;
-						//left: 0;
+					box-sizing: border-box;
+					//border: 1px solid transparent;
+					a{
+						color: #999;
+						&:hover{
+							color: #FE8C00;
+						}
+					}
+					dl{
+						z-index: 999;
+						background: #fff;
+					}
+					&.list{
+						>dl{
+							background: #fff;
+							padding: 0;
+							display: none;
+							>dd{
+								line-height: 35px;
+								padding: 0;
+								margin-left: 0;
+								&:hover{color: #FE8C00;}
+							}
+						}
+						&:hover{
+							border: 1px solid #E5E5E5;
+							border-top: none;
+							background: #fff;
+							color: #FE8C00;
+							>dl{
+								display: block;
+								margin-top: -10px;
+								border-bottom-left-radius: 4px;
+								border-bottom-right-radius: 4px;
+							}
+						}
+					}
+					&.sell{
+						position: relative;
+						>dl{
+							position: absolute;
+							width: 140%;
+							left: -31px;
+							border: 1px solid #E5E5E5;
+							border-top: none;
+							margin: 0 !important;
+						}
+					}
+					&.dh{
+						position: relative;
+						.dhlist{
+							border: 1px solid #E5E5E5;
+							position: absolute;
+							float: left;
+							width: 1050px;
+							padding: 20px 10px;
+							left: -995px;
+							display: none;
+							>dl{
+								display: block;
+								float: left;
+								text-align: center;
+								margin: 0 10px;
+								padding: 10px;
+								//width: 220px;
+								dt{
+									line-height: 60px;
+									font-size: 14px;
+									color: #000;
+								}
+								>dd{
+									float: left;
+									margin-left: 0;
+									line-height: 30px;
+									text-align: center;
+									&:hover{color: #FE8C00;}
+								}
+								&.hotel{
+									width: 256px;
+									>dd{
+										width: 33%;
+									}
+								}
+								&.food{
+									width: 120px;
+									>dd{
+										width: 50%;
+									}
+								}
+								&.movie{
+									width: 90px;
+									>dd{
+										width: 100%;
+									}
+								}
+								&.appicon{
+									>dd{
+										margin: 0 10px;
+										img{
+											width: 60px;
+											height: 60px;
+										}
+									}
+								}
+							}
+						}
+						&:hover{
+							border-bottom: none;
+							.dhlist{
+								display: block;
+							}
+						}
 					}
 				}
-				&:hover .navFirstDown{
-					//left: -100px;
-				}
-			}
-			li{
-				float: left;
-				position: relative;
-				height: $line-height;
-				line-height: $line-height;
-				margin: 0 14px;
 			}
 		}
 	}

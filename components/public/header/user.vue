@@ -1,7 +1,7 @@
 <template>
 	<div class="user">
 		<template v-if="isLogin == 1">
-			<span>欢迎！{{ user }}</span>
+			欢迎！<span>{{ user }}</span>
 		</template>
 		<template v-else>
 			<nuxt-link to="/login" class="login">立即登录</nuxt-link>
@@ -20,3 +20,6 @@ export default {
 	}
 }
 </script>
+
+<style>
+</style>
