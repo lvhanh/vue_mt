@@ -1,31 +1,29 @@
 <template>
-<el-row :gutter="0" class="MyHeader">
-    <el-col :span="5">
-        <city />
-    </el-col>
-    <el-col :span="5">
-        <user />
-    </el-col>
-    <el-col :span="14">
-        <navbar />
-    </el-col>
-</el-row>
+	<div class="m-header">
+		<el-row>
+			<el-col>
+				<top-bar/>
+			</el-col>
+		</el-row>
+		<el-row>
+			<el-col class="m-search">
+				<search-bar/>
+			</el-col>
+		</el-row>
+	</div>
 </template>
 
 <script>
-import City from './city.vue'
-import User from './user'
-import Navbar from './nav'
+import TopBar from './topbar';
+import SearchBar from './search';
 export default {
-    components:{
-        City,
-        User,
-        Navbar
-    }
+	components:{
+		TopBar,
+		SearchBar
+	}
 }
 </script>
 
 <style lang="scss">
-    @import '../../../assets/css/public/header/index.scss';
-    @import '../../../assets/css/public/layout.scss'
+	@import '../../../assets/css/public/header/index.scss'
 </style>

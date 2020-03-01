@@ -1,0 +1,72 @@
+.m-content{
+	width: 1190px;
+	margin: 0 auto;
+	.quality{
+		li{
+			list-style: none;
+			float: left;
+		}
+		.tab{
+			background-color: rgb(190, 164, 116);
+			height: 44px;
+			line-height: 40px;
+			padding: 0;
+			margin: 0;
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+			.nav-item{
+				line-height: 44px;
+				float: left;
+				cursor: pointer;
+				text-transform: uppercase;
+				color: #fff;
+				position: relative;
+				margin: 0 5px;
+			}
+			>ul{
+				margin: 0;
+				padding: 0;
+				.mainTitle{
+					font-size: 18px;
+					margin-left: 13px;
+					margin-right: 20px;
+					font-family: "MFShangHei-Regular" !important;
+				}
+				.title{
+					font-size: 14px;
+					>div{
+						width: 100%;
+						position: absolute;
+						bottom: 0;
+						text-align: center;
+						.select{
+							width: 2px;
+							height: 0;
+							border-left: 5px solid transparent;
+							border-right: 5px solid transparent;
+							border-bottom: 7px solid #fff;
+							display: block;
+							margin: 0 auto;
+						}
+					}
+				}
+			}
+		}
+		.area{
+			height: 628px;
+			padding: 11px 10px 10px;
+			background: #fff;
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+			border-left: 1px solid #e5e5e5;
+    	border-right: 1px solid #e5e5e5;
+			border-bottom: 1px solid #e5e5e5;
+			.lists{
+				float: left;
+				width: 33.3%;
+				height: 314px;
+				margin: 0;
+			}
+		}
+	}
+}

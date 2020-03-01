@@ -1,0 +1,88 @@
+.register{
+	background: #fff;
+	header{
+		text-align: center;
+		border-bottom: 2px solid #D8D8D8;
+		.header{
+			width: 980px;
+			height: 50px;
+			line-height: 50px;
+			margin: 0 auto;
+			padding: 10px 0;
+			.tp{
+				float: left;
+				width: 128px;
+				>img{
+					width: 128px;
+				}
+			}
+			.login{
+				float: right;
+				>span{
+					color: #666;
+				}
+				button{
+					padding: 3px 10px;
+					font-size: 12px;
+					background-color: #FFD000;
+					border-width: 0;
+					box-shadow: 0 2px 1px rgba(191,105,0,.15);
+					border-color: rgba(191,105,0,.15);
+					cursor: pointer;
+				}
+			}
+		}
+	}
+	.formList{
+		font: 400 14px/1.5 'Hiragino Sans GB',tahoma,sans-serif;
+		margin: 0 auto;
+		padding-top: 30px;
+		width: 980px;
+		.input{
+			border: 1px solid #f76120;
+			width: 248px;
+			height: 24px;
+			padding: 5px;
+			margin: 0 5px;
+		}
+		.mheight{
+			height: 50px;
+			line-height: 50px;
+			margin-bottom: 5px;
+			padding-left: 10px;
+			.label{
+				display: inline-block;
+				width: 100px;
+				text-align: right;
+			}
+			span{
+				color: #666;
+			}
+		}
+		.email{
+			width: 860px;
+			padding-left: 120px;
+		}
+		.registerButton{
+			width: 860px;
+			padding-left: 120px;
+			margin-bottom: 5px;
+			>input{
+				background: #FFBD00;
+				font-size: 14px;
+				font-weight: 700;
+				border-width: 0;
+				box-shadow: 0 2px 1px rgba(191,105,0,.15);
+				height: 40px;
+				width: 200px;
+			}
+		}
+		.term{
+			padding-left: 110px;
+			a{
+				color: #FE8C00;
+				text-decoration: none;
+			}
+		}
+	}
+}

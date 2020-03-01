@@ -1,0 +1,132 @@
+.m-slider{
+	margin-left: 120px;
+	.top{
+		margin: 10px 0 10px 0;
+		width: 1000px;
+		height: 240px;
+		.block{
+			width: 550px;
+			height: 240px;
+			float: left;
+			z-index: 99;
+			img{
+				cursor: pointer;
+				width: 550px;
+				height: 240px;
+				opacity: 0.75;
+				margin: 0;
+			}
+			.el-carousel__container{
+				width: 550px;
+				height: 240px;
+			}
+		}
+		.relax{
+			width: 150px;
+			height: 240px;
+			margin: 0 10px 0 10px;
+			float: left;
+			img{
+				width: 150px;
+				height: 240px;
+			}
+		}
+		.login{
+			text-align: center;
+			float: left;
+			width: 230px;
+			height: 240px;
+			background: #fff;
+			.head-img{
+				padding-top: 20px;
+				margin-bottom: 10px;
+				img{
+					width: 47px;
+					height: 47px;
+					border-radius: 50%;
+					border: 1px solid #e5e5e5;
+				}
+				span{
+					display: block;
+				}
+			}
+			.button{
+				margin: 0 auto;
+				button{
+					display: block;
+					margin: 0 auto;
+					width: 126px;
+					height: 40px;
+					border: 1px solid #e5e5e5;
+					background: #fff;
+					border-radius: 40px;
+					font-size: 14px;
+					color: #333;
+					transition: background-color 0.5s;
+					margin-top: 15px;
+					cursor: pointer;
+					&:hover{
+						background: #f6f6f6;
+						transition:background-color 0.5s;
+					}
+				}
+			}
+		}
+	}
+	.bottom{
+		>div{
+			margin-right: 10px;
+			float: left;
+		}
+		.hotel{
+			width: 270px;
+			height: 161px;
+			img{
+				width: 270px;
+				height: 161px;
+			}
+		}
+		.study{
+			width: 270px;
+			height: 161px;
+			img{
+				width: 270px;
+				height: 161px;
+			}
+		}
+		.bussiness{
+			width: 150px;
+			height: 161px;
+			img{
+				width: 150px;
+				height: 161px;
+			}
+		}
+		.download{
+			width: 230px;
+			height: 161px;
+			text-align: center;
+			background: #fff;
+			.top-img{
+				height: 90px;
+				padding-top: 10px;
+				margin-bottom: 8px;
+				img{
+					width: 95px;
+					height: 95px;
+				}
+			}
+			.word{
+				height: 60px;
+				h3{
+					color: black;
+					margin-bottom: 5px;
+				}
+				span{
+					margin-right: 5px;
+					color: red;
+				}
+			}
+		}
+	}
+}

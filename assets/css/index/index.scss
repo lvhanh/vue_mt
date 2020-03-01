@@ -1,0 +1,12 @@
+@import './menu.scss';
+@import './slider.scss';
+@import './content.scss';
+
+.home-page{
+	.m-main{
+		margin: 40px auto;
+		>el-col{
+			text-align: center;
+		}
+	}
+}
