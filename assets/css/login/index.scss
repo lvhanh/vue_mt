@@ -8,9 +8,13 @@ body{
 			.img{
 				width: 980px;
 				margin: 40px auto 30px;
-				img{
+				.logo {
+					background-image: url(//s0.meituan.net/bs/file/?f=fe-sso-fs:build/assets/sp-normal.2ee5c09.png);
+					background-position: -188px -808px;
+					background-repeat: no-repeat;
 					width: 82px;
 					height: 54px;
+					display: block;
 				}
 			}
 		}

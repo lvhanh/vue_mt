@@ -2,7 +2,7 @@
 	<div class="login">
 		<div class="header">
 			<div class="img">
-				<img src="http://s0.meituan.net/bs/file/?f=fe-sso-fs:build/assets/sp-retina.b95a7dd.png" />
+				<a href="/" class="logo"></a>
 			</div>
 		</div>
 		<div class="content">
@@ -26,7 +26,7 @@
 					<a href="">忘记密码？</a>
 					<button class="button">登录</button>
 					<p class="signup">还没有账号？
-						<a href="">免费注册</a>
+						<a href="/register">免费注册</a>
 					</p>
 				</div>
 			</div>

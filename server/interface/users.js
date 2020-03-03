@@ -36,31 +36,18 @@ router.post('/users/signup', async function(ctx){
 		}
 	}
 	let user = await User.find({username})
-	if(user){
+	if(user.length){
 		ctx.body = {
 			code : -1,
 			msg  : '该用户已存在'
 		}
 		return
 	}
-	let newUser = await User.create({
-		username : username,
-		password : password,
-		email    : email
-	})
+	let newUser = await User.create({username, password, email})
 	if(newUser){
-		let res = await axios.post('/users/signin',{username,password})
-		if(res.data&&res.data.code===0){
-			ctx.body = {
-				code : 0,
-				msg  : '注册成功！',
-				user : res.data.user
-			}
-		}else{
-			ctx.body = {
-				code : -1,
-				msg  : 'error'
-			}
+		ctx.body = {
+			code : 0,
+			msg  : '注册成功！',
 		}
 	}else{
 		ctx.body = {
@@ -68,6 +55,7 @@ router.post('/users/signup', async function(ctx){
 			msg  : '注册失败'
 		}
 	}
+	
 })
 
 router.post('/users/signin',async function(ctx,next){

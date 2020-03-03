@@ -75,7 +75,19 @@
 				box-shadow: 0 2px 1px rgba(191,105,0,.15);
 				height: 40px;
 				width: 200px;
+				cursor: pointer;
 			}
+		}
+		.error{
+			margin: 10px 0 10px 120px;
+			padding-left: 10px;
+			height: 30px;
+			line-height: 30px;
+			border: 1px solid #f5d8a7;
+			background: #fff6db;
+			border-radius: 2px;
+			font-size: 12px;
+			width: 200px;
 		}
 		.term{
 			padding-left: 110px;

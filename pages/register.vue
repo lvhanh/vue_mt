@@ -29,8 +29,8 @@
 				</div>
 				<div class="email">
 					<input type="button" value="发送邮箱验证码"
-					@click="verify">
-					<span class="status">{{ Msg.expire }}</span>
+					@click="verify" :disabled="isActive">
+					<span class="status" v-if="count>0">{{ Msg.expire }}</span>
 				</div>
 				<div class="mheight">
 					<label class="label">验证码</label>
@@ -52,8 +52,9 @@
 				</div>
 				<div class="registerButton">
 					<input type="button" value="同意以下协议并注册"
-					@click="checkLogin">
+					@click="Register">
 				</div>
+				<div class="error" v-if="error">{{error}}</div>
 				<div class="term">
 					<a href="https://rules-center.meituan.com/rules-detail/4" target="_blank">
 					《美团点评用户服务协议》
@@ -68,6 +69,7 @@
 </template>
 
 <script>
+import Crypto from 'crypto-js'
 import axios from 'axios'
 export default {
 	layout : 'blank',
@@ -82,6 +84,8 @@ export default {
 				expire	 : ''
 			},
 			error : '',
+			count : 0,
+			isActive: false,
 			form  : {
 				username : '',
 				pwd 		 : '',
@@ -161,14 +165,46 @@ export default {
 				}).then(function(res){
 					if(res.data&&res.status === 200&&res.data.code === 0){
 						let count = 60
+						_this.count = count
+						//_this.Msg.expire = `验证码已发送，还剩${count--}秒`
 						_this.timer = setInterval(function(){
-							_this.Msg.expire = `验证码已发送，${count--}秒后可重新获取`
-						},1000)
-						if(count === 0){
-								_this.Msg.expire = ''
+							_this.isActive=true;
+							_this.Msg.expire = `验证码已发送，还剩${count--}秒`;
+							if(count<0){
+								clearInterval(_this.timer)
+								_this.isActive=false
+								_this.count = 0
 							}
+						},1000)
 					}else{
 						_this.Msg.expire = data.msg
+					}
+				})
+			}
+		},
+		Register : function(){
+			let cklogin  = !!this.checkLogin(),
+					username = this.form.username,
+					password = this.form.pwd,
+					email    = this.form.email,
+					code		 = this.form.code,
+					_this 	 = this
+			if(!cklogin){
+				axios.post('/users/signup',{
+					username : encodeURIComponent(username),
+					password : Crypto.MD5(password).toString(Crypto.enc.Hex),
+					email		 : email,
+					code		 : code
+				}).then(function({data,status}){
+					if(status===200){
+						_this.error = ''
+						if(data&&data.code===0){
+							location.href='/login'
+						}else{
+							_this.error = data.msg
+						}
+					}else{
+						_this.error = `无法连接服务器，${status}`
 					}
 				})
 			}
