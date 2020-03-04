@@ -15,16 +15,15 @@
 				<div class="form">
 					<div class="tip">{{ msg }}</div>
 					<span>账号登录</span>
-					<el-input placeholder="请输入用户名" class="input">
-						<template slot="prepend">+86></template>
+					<el-input placeholder="请输入用户名" class="input"
+					v-model="form.username">
 					</el-input>
-					<el-input placeholder="请输入密码" class="input">
-						<template slot="prepend">
-							<i class="el-icon-lock"></i>
-						</template>
+					<el-input placeholder="请输入密码" class="input"
+					v-model="form.pwd">
 					</el-input>
 					<a href="">忘记密码？</a>
-					<button class="button">登录</button>
+					<button class="button"
+					@click="Login">登录</button>
 					<p class="signup">还没有账号？
 						<a href="/register">免费注册</a>
 					</p>
@@ -35,15 +34,40 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Crypto from 'crypto-js'
 export default {
 	layout : 'blank',
 	data(){
 		return {
 			form : {
 				username : '',
-				email 	 : ''
+				pwd 	 : ''
 			},
 			msg  : ''
+		}
+	},
+	methods : {
+		Login : function(){
+			let username = this.form.username,
+				password = this.form.pwd,
+				msg		 = this.msg,
+				_this 	 = this
+			axios.post('/users/signin',{
+				username : encodeURIComponent(username),
+				password : Crypto.MD5(password).toString()
+			}).then(function(res){
+				if(res.status===200){
+					_this.msg = ''
+					if(res.data&&res.data.code===0){
+						location.href='/'
+					}else{
+						_this.msg = res.data.msg
+					}
+				}else{
+					_this.msg = `连接服务器出错，${res.status}`
+				}
+			})
 		}
 	}
 }

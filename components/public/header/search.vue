@@ -7,8 +7,8 @@
 						<img src="//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="美团">
 					</nuxt-link>
 				</el-col>
-				<el-col :span="12" class="input_btn">
-					<div>
+				<el-col :span="12">
+					<div class="input_btn">
 						<el-input
 						placeholder="搜索商家和地点"
 						v-model="search" class="input"

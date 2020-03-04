@@ -1,13 +1,13 @@
 <template>
   <div class="home-page">
-    <el-row :gutter="0" class="m-life">
-      <el-col :span="6">
+    <div class="m-life">
+      <div>
         <tmenu />
-      </el-col>
-      <el-col :span="18">
+      </div>
+      <div>
         <tslider/>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
     <el-row class="m-main">
       <el-col :span="24">
         <tcontent/>

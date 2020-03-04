@@ -3,10 +3,10 @@
 @import './content.scss';
 
 .home-page{
-	.m-main{
-		margin: 40px auto;
-		>el-col{
-			text-align: center;
-		}
+	.m-life{
+		width: 1190px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
 	}
 }

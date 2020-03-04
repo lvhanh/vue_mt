@@ -187,7 +187,7 @@ export default {
 					username = this.form.username,
 					password = this.form.pwd,
 					email    = this.form.email,
-					code		 = this.form.code,
+					code	 = this.form.code,
 					_this 	 = this
 			if(!cklogin){
 				axios.post('/users/signup',{
