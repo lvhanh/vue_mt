@@ -13,7 +13,7 @@
 			</div>
 			<div class="right">
 				<div class="form">
-					<div class="tip">{{ msg }}</div>
+					<div class="tip" :class="{active:msg}">{{ msg }}</div>
 					<span>账号登录</span>
 					<el-input placeholder="请输入用户名" class="input"
 					v-model="form.username">
@@ -50,9 +50,9 @@ export default {
 	methods : {
 		Login : function(){
 			let username = this.form.username,
-				password = this.form.pwd,
-				msg		 = this.msg,
-				_this 	 = this
+					password = this.form.pwd,
+					msg		   = this.msg,
+					_this 	 = this
 			axios.post('/users/signin',{
 				username : encodeURIComponent(username),
 				password : Crypto.MD5(password).toString()

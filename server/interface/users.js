@@ -118,7 +118,7 @@ router.post('/users/verify',async function(ctx,next){
 
 router.get('/users/logout',async function(ctx,next){
 	await ctx.logout()
-	if(!ctx.isAuthenticate()){
+	if(!ctx.isAuthenticated()){
 		ctx.body = {
 			code : 0
 		}
@@ -130,7 +130,7 @@ router.get('/users/logout',async function(ctx,next){
 })
 
 router.get('/users/getUser',async function(ctx){
-	if(ctx.isAuthenticate()){
+	if(ctx.isAuthenticated()){
 		let {username,email} = ctx.session.passport.user
 		ctx.body = {
 			user : username,
