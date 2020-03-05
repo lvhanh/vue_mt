@@ -5,3 +5,15 @@
         <span>[ 吴江 周庄 昆山 ]</span>
     </div>
 </template>
+
+<script>
+export default {
+    data(){
+        city : ''
+    }
+}
+</script>
+
+<style>
+
+</style>
