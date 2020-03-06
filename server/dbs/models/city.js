@@ -2,9 +2,8 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const CitySchema = new Schema({
-	id : 'string',
-	province : 'string',
-	city    : 'string'
+	id 	  : 'string',
+	value : 'Array'
 })
 
 const City = mongoose.model('City',CitySchema)
