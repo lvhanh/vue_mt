@@ -4,14 +4,11 @@
 		@mouseleave="leave">
 			<dt>全部分类</dt>
 			<dd
-			v-for="(item,index) in menu"
+			v-for="(item,index) in $store.state.menu.menu.menu"
 			:key="index"
 			@mouseenter="enter">
-				<i :class="item.type" />
-				<span v-for="(i,index) in item.title" :key="index" class="menuList">
-					<nuxt-link to="/">{{ i.tmenu_name }}</nuxt-link>
-					<span v-if="i.num > 1"> / </span>
-				</span>
+				<i :class="item.type"/>
+				<span class="menuList">{{ item.name }}</span>
 				<span class="arrow">></span>
 			</dd>
 		</dl>
@@ -21,8 +18,8 @@
 		@mouseleave="childLeave">
 			<dl v-for="(item,index) in hoverTitle.child"
 			:key="index">
-				<h3>{{ item.menu_name }}<span>更多></span></h3>
-				<dd v-for="(i,index) in item.child_name" :key="index">
+				<h3>{{ item.title }}<span>更多></span></h3>
+				<dd v-for="(i,index) in item.child" :key="index">
 					{{ i }}
 				</dd>
 			</dl>
@@ -35,77 +32,17 @@ export default {
 	data(){
 		return {
 			kind : '',
-			curKind : '',
-			menu : [{
-				type : 'food',
-				title:[{
-						num 			 : 1,
-						tmenu_name : '美食'
-					}],
-				child:[{
-					menu_name : '美食',
-					child_name: ['代金券','甜点食品','火锅','自助餐','小吃快餐','日韩料理']
-				}]
-			},
-			{
-				type : 'takeout',
-				title: [{
-						num 		   : 1,
-						tmenu_name : '外卖'
-						}],
-				child:[{
-					menu_name : '外卖',
-					child_name: ['美团外卖']
-				}]
-			},
-			{
-				type : 'hotel',
-				title:[{
-						num 			 : 1,
-						tmenu_name : '酒店'}],
-				child:[{
-					menu_name : '酒店星级',
-					child_name: ['经济型','舒适/三星','高档/四星','豪华/五星']
-				}]	
-			},
-			{
-				type : 'apartment',
-				title:[{
-						num 			 : 1,
-						tmenu_name : '榛果民宿'
-					}],
-				child:[{
-					menu_name : '热门城市',
-					child_name: ['上海','成都','北京','重庆','南京']
-				},{
-					menu_name : '热门房源',
-					child_name: ['复式Loft','别墅']
-				}]	
-			},
-			{
-				type : 'ticket',
-				title:[{
-						num 			 : 2,
-						tmenu_name : '机票'
-					},
-					{
-						num				 : 1,
-						tmenu_name : '火车票'
-					}],
-				child:[{
-					menu_name : '机票',
-					child_name: ['国内机票','国际/港澳台机票']
-				},{
-					menu_name : '火车票',
-					child_name: ['火车票']
-				}]	
-			}]
+			curKind : ''
 		}
 	},
+	// created : function(){
+	// 	this.menu = this.$store.state.menu.menu.menu
+	// 	console.log(this.menu)
+	// },
 	computed : {
 		hoverTitle : function(){
 			let kinds=this.kind
-			return this.menu.filter(function(x){
+			return this.$store.state.menu.menu.menu.filter(function(x){
 				return kinds === x.type
 			})[0]
 		}
@@ -114,7 +51,7 @@ export default {
 		enter : function(e){
 			this.kind=e.currentTarget.querySelector('i').getAttribute("class")
 			this.curKind = this.kind
-			//console.log(this.curKind)
+			//console.log(this.menu)
 		},
 		leave : function(){
 			let _this = this

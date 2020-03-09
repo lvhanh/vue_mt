@@ -52,7 +52,7 @@ async function start() {
   }
 
   app.use(users.routes())
-  //app.use(city.routes())
+  app.use(city.routes())
 
   app.use(ctx => {
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset

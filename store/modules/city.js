@@ -1,5 +1,5 @@
 const state = ()=>({
-    position : ''
+    position : {}
 })
 
 const mutations = {
@@ -8,10 +8,10 @@ const mutations = {
     }
 }
 
-// const actions = {
-//     setPosition(context,position){
-//         context.commit('setPosition',position)
-//     }
-// }
+const actions = {
+    setPosition: (context,position)=>{
+        context.commit('setPosition',position)
+    }
+}
 
 export default {namespaced:true,state,mutations}
