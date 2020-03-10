@@ -31,6 +31,14 @@ const store = ()=>new Vuex.Store({
             context.commit('menu/setMenu',res1.status===200
             ?{menu:res1.data.menus}
             :{menu:[]})
+            const res2 = await app.$axios.get('/search/hot',{
+                params : {
+                    city : app.store.state.city.position.city.replace('市',"")
+                }
+            })
+            context.commit('menu/setHotplace',res2.status===200
+            ?res2.data.hot
+            :[])
         }
     }
     // actions : {

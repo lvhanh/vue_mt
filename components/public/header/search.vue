@@ -18,13 +18,13 @@
 						<el-button type="primary" icon="el-icon-search" class="button" />
 						<dl class="noinput" v-if="isFocused">
 							<dt>热门搜索</dt>
-							<dd v-for="(item,index) in hotList" :key="index">
-								<a href="/">{{ item }}</a>
+							<dd v-for="(item,index) in this.$store.state.menu.hotPlace.slice(0,5)" :key="index">
+								<a href="/">{{ item.name }}</a>
 							</dd>
 						</dl>
 						<dl class="hasInput" v-if="isInput">
 							<dd v-for="(item,index) in searchList" :key="index">
-								<a href="/">{{ item }}</a>
+								<a href="/">{{ item.name }}</a>
 							</dd>
 						</dl>
 					</div>
@@ -46,13 +46,15 @@
 </template>
 
 <script>
+import _ from 'lodash'
+import axios from 'axios'
 export default {
 	data(){
 		return{
 			search 		 : '',
 			isFocus		 : false,
-			hotList 	 : ['火锅','火锅','火锅'],
-			searchList : ['火锅','火锅','火锅']
+			hotList 	 : [],
+			searchList : []
 		}
 	},
 	computed:{
@@ -68,14 +70,22 @@ export default {
 			this.isFocus = true;
 		},
 		blur : function(){
-			let _this = this;
+			let _this = this
 			setTimeout(function(){
-				_this.isFocus = false;
+				_this.isFocus = false
 			},200)
 		},
-		input : function(){
-			console.log(this.search)
-		}
+		input : _.debounce(function(){
+			let _this = this
+			axios.get('/search/top',{
+				params : {
+					input : _this.search,
+					city  : this.$store.state.city.position.city.replace('市','')
+				}
+			}).then(function(res){
+				_this.searchList = res.status===200?res.data.top.slice(0,5):[]
+			})
+		},200)
 	}
 }
 </script>
