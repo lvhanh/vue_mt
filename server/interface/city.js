@@ -1,5 +1,4 @@
 import Router from 'koa-router'
-import Redis from 'koa-redis'
 import province from '../dbs/models/province'
 import city from '../dbs/models/city'
 import axios from '../interface/utils/axios'
