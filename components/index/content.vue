@@ -23,7 +23,7 @@
 						<div class="store">{{ item.store }}</div>
 						<div class="intru">{{ item.intru }}</div>
 						<div class="price-address">
-							<span class="price">{{ item.price }}</span>
+							<span class="price">￥{{ item.price }}</span>
 							<span class="address">{{ item.address }}</span>
 						</div>
 					</div>
@@ -73,7 +73,7 @@ export default {
 							url    : item.photos[0].url,
 							store  : item.name,
 							intru  : item.type,
-							price  : item.biz_ext.cost||'暂无',
+							price  : item.biz_ext.cost.length?item.biz_ext.cost:'暂无',
 							address: item.address
 						}
 					}).slice(0,6)
@@ -100,7 +100,7 @@ export default {
 							url    : item.photos[0].url,
 							store  : item.name,
 							intru  : item.type,
-							price  : item.biz_ext.cost||'暂无',
+							price  : item.biz_ext.cost.length?item.biz_ext.cost:'暂无',
 							address: item.address
 						}
 					}).slice(0,6)
