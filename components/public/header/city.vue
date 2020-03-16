@@ -1,6 +1,6 @@
 <template>
     <div class="city"> 
-        <i class="el-icon-location" /><span>{{$store.state.city.position.city}}</span>
+        <i class="el-icon-location" /><span>{{city}}</span>
         <nuxt-link class="changecity" to="/ChangeCity">切换城市</nuxt-link>
         <span>[ 吴江 周庄 昆山 ]</span>
     </div>
@@ -9,11 +9,11 @@
 <script>
 import axios from 'axios'
 export default {
-    // data(){
-    //     return {
-    //         city : ''
-    //     }
-    // },
+    data(){
+        return {
+            city : ''
+        }
+    },
     // created : function(){
     //     // let _this = this
     //     // axios.get('/city/getPosition').then(function(res){
@@ -24,6 +24,11 @@ export default {
     //     //     }
     //     // })
     // }
+    created(){
+        if(process.client){
+            this.city = window.sessionStorage.getItem('changeCity')?window.sessionStorage.getItem('changeCity'):this.$store.state.city.position.city
+        }
+    }
 }
 </script>
 

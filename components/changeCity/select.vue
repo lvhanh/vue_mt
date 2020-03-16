@@ -13,12 +13,13 @@
         </div>
         <div class="city">
             <el-select v-model="mcity" filterable 
-            placeholder="城市" :disabled="!mprovince">
+            placeholder="城市" :disabled="!mprovince"
+            @change="go">
                 <el-option
                 v-for="item in Mcity"
                 :key="item.value"
                 :label="item.label"
-                :value="item.value">
+                :value="item.label">
                 </el-option>
             </el-select>
         </div>
@@ -48,7 +49,6 @@ export default {
     },
     mounted : function(){
         let _this = this
-        this.province = []
         axios.get('/city/province').then(function(res){
             _this.province = res.data.province.map(item=>{
                 return {
@@ -61,18 +61,18 @@ export default {
     computed : {
         Mcity : function(){
             let _this = this
-            if(this.mprovince){
-                let id = this.province.find(item=>item.value===this.mprovince)
-                let mid = id.id
-                console.log(mid)
-                axios.get(`/city/province/${mid}`).then(function(res){
-                    _this.city = res.data.cities.map(item=>{
+            if(_this.mprovince){
+                let id = this.province.find(item=>item.value===_this.mprovince).id
+                //let mid = id.id
+                axios.get(`/city/province/${id}`).then(function(res){
+                    _this.city=res.data.cities.map(item=>{
                         return {
-                            label : item.name,
+                            label : item.name==='市辖区'?_this.mprovince:item.name,
                             value : item.id
                         }
                     })
                 })
+                return _this.city
             }
         }
     },
@@ -82,6 +82,10 @@ export default {
         },
         handleSelect : function(){
 
+        },
+        go : function(){
+            window.sessionStorage.setItem('changeCity',this.mcity)
+            location.href='/'
         }
     }
 }

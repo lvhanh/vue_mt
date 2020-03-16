@@ -1,10 +1,14 @@
 const state = ()=>({
-    position : {}
+    position    : {},
+    changePosition : ''
 })
 
 const mutations = {
     setPosition(state,val){
         state.position = val
+    },
+    changePosition(state,val){
+        state.changePosition = val
     }
 }
 

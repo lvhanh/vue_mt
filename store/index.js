@@ -27,6 +27,7 @@ const store = ()=>new Vuex.Store({
             context.commit('city/setPosition',res.status===200
             ?{province:res.data.province,city:res.data.city}
             :{city:'',province:''})
+            //context.commit('city/changePosition',app.sessionStorage.getItem('changeCity'))
             const res1 = await app.$axios.get('/city/menu')
             context.commit('menu/setMenu',res1.status===200
             ?{menu:res1.data.menus}
