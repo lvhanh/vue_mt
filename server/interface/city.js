@@ -40,27 +40,66 @@ router.get('/city/menu',async (ctx)=>{
 })
 
 router.get('/city/province',async (ctx)=>{
-    let res = await province.find()
-    ctx.body = {
-        province : res.map(item=>{
-            return {
-                id       : item.id,
-                province : item.value
-            }
-        })
+    // let res = await province.find()
+    // ctx.body = {
+    //     province : res.map(item=>{
+    //         return {
+    //             id       : item.id,
+    //             province : item.value
+    //         }
+    //     })
+    // }
+    let res = await axios.get('http://cp-tools.cn/geo/province')
+    if(res.status===200){
+        ctx.body = {
+            code : 0,
+            province : res.data.province
+        }
+    }else{
+        ctx.body = {
+            code : -1,
+            province : []
+        }
     }
 })
 
 router.get('/city/province/:id',async (ctx)=>{
-    let res = await city.findOne({id : ctx.params.id})
-    ctx.body = {
-        cities : res.value.map(item=>{
-            return {
-                id   : item.id,
-                city : item.province,
-                name : item.name
-            }
-        })
+    // let res = await city.findOne({id : ctx.params.id})
+    // ctx.body = {
+    //     cities : res.value.map(item=>{
+    //         return {
+    //             id   : item.id,
+    //             city : item.province,
+    //             name : item.name
+    //         }
+    //     })
+    // }
+    let res = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}`)
+    if(res.status===200){
+        ctx.body = {
+            code : 0,
+            cities : res.data.city
+        }
+    }else {
+        ctx.body = {
+            code : -1,
+            cities : []
+        }
+    }
+})
+
+router.get('/city/getCity',async (ctx)=>{
+    let res = await axios.get('http://cp-tools.cn/geo/city')
+    if(res.status===200){
+        ctx.body = {
+            code : 0,
+            city : res.data.city
+        }
+    }else{
+        ctx.body = {
+            code : -1,
+            city : []
+        }
     }
 })
 

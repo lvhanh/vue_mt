@@ -1,0 +1,23 @@
+.m-select{
+    font-size: 16px;
+    .select{
+        padding-bottom: 30px;
+        border-bottom: 1px solid #E5E5E5;
+        display: flex;
+        .province{
+            margin-right: 20px;
+            >span{
+                margin-right: 10px;
+            }
+            .el-select{
+                width: 150px;
+            }
+        }
+        .city{
+            width: 150px;
+        }
+        .selectCity{
+            margin-left: 60px;
+        }
+    }
+}
