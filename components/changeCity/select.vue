@@ -37,6 +37,7 @@
 
 <script>
 import axios from 'axios'
+import _ from 'lodash'
 export default {
     data(){
         return {
@@ -77,9 +78,26 @@ export default {
         }
     },
     methods : {
-        querySearchAsync : function(){
-
-        },
+        querySearchAsync : _.debounce(async function(queryString,cb){
+            let _this = this
+            _this.city = []
+            let cities = await axios.get('/city/getCity')
+            if(cities.status===200){
+                _this.city = cities.data.city.map(item=>{
+                    return {
+                        value : item.name
+                    }
+                })
+                let result = queryString?_this.city.filter(item=>{
+                    item.value.indexOf(queryString)>-1
+                })
+                :cities.data.city
+                console.log(result)
+                cb(result)
+            }else {
+                cb([])
+            }
+        },300),
         handleSelect : function(){
 
         },
