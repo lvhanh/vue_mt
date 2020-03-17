@@ -38,6 +38,7 @@
 <script>
 import axios from 'axios'
 import _ from 'lodash'
+import pinyin from 'pinyin4js'
 export default {
     data(){
         return {
@@ -81,25 +82,42 @@ export default {
         querySearchAsync : _.debounce(async function(queryString,cb){
             let _this = this
             _this.city = []
-            let cities = await axios.get('/city/getCity')
-            if(cities.status===200){
-                _this.city = cities.data.city.map(item=>{
-                    return {
-                        value : item.name
-                    }
-                })
-                let result = queryString?_this.city.filter(item=>{
-                    item.value.indexOf(queryString)>-1
-                })
-                :cities.data.city
-                console.log(result)
-                cb(result)
+            if(_this.city.length){
+                cb(_this.city.filter(item=>item.value.indexOf(queryString)>-1))
             }else {
-                cb([])
+                let cities = await axios.get('/city/getCity')
+                if(cities.status===200){
+                    _this.city = cities.data.city.map(item=>{
+                        return {
+                            value : item.name
+                        }
+                    })
+                    if(queryString){
+                        let str = new RegExp("[A-Za-z]+")
+                        if(str.test(queryString)){
+                            let city = _this.city.map(item=>{
+                                return {
+                                    value : item.value,
+                                    pinyin: pinyin.convertToPinyinString(item.value,'',pinyin.WITHOUT_TONE)
+                                }
+                            })
+                            let result = city.filter(item=>item.pinyin.indexOf(queryString)>-1)
+                            cb(result)
+                        }else{
+                            let result = _this.city.filter(item=>item.value.indexOf(queryString)>-1)
+                            cb(result)
+                        }
+                    }else{
+                        cb(_this.city)
+                    }
+                }else {
+                    cb([])
+                }
             }
         },300),
         handleSelect : function(){
-
+            window.sessionStorage.setItem('changeCity',this.selectCity)
+            location.href='/'
         },
         go : function(){
             window.sessionStorage.setItem('changeCity',this.mcity)

@@ -1,0 +1,13 @@
+.m-hot{
+	font-size: 16px;
+	padding: 20px 0;
+	border-bottom: 1px solid #E5E5E5;
+	.hot{
+		height: 40px;
+		line-height: 40px;
+		display: flex;
+		li{
+			list-style: none;
+		}
+	}
+}

@@ -3,14 +3,19 @@
         <div class="m-select">
             <mselect />
         </div>
+        <div class="m-hot">
+            <mhot />
+        </div>
     </div>
 </template>
 
 <script>
 import Mselect from '../components/changeCity/select'
+import Mhot from '../components/changeCity/hot'
 export default {
     components : {
-        Mselect
+        Mselect,
+        Mhot
     }
 }
 </script>
