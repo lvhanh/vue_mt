@@ -33,7 +33,7 @@ export default {
 	methods : {
 		click : function(){
 			window.sessionStorage.setItem('changeCity',this.enterCity)
-            location.href='/'
+			location.href='/'
 		},
 		enter : function(item){
 			this.enterCity = item.value

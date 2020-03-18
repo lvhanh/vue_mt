@@ -3,7 +3,7 @@
 		<div class="searchBar">
 			<el-row>
 				<el-col :span="6" class="mt-img">
-					<nuxt-link to="//su.meituan.com">
+					<nuxt-link to="/">
 						<img src="//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="美团">
 					</nuxt-link>
 				</el-col>
@@ -54,8 +54,15 @@ export default {
 			search 		 : '',
 			isFocus		 : false,
 			hotList 	 : [],
-			searchList : []
+			searchList : [],
+			city       : ''
 		}
+	},
+	created : function(){
+		let _this = this
+			if(process.client){
+            _this.city = window.sessionStorage.getItem('changeCity')?window.sessionStorage.getItem('changeCity'):_this.$store.state.city.position.city
+        }
 	},
 	computed:{
 		isFocused : function(){
@@ -80,7 +87,7 @@ export default {
 			axios.get('/search/top',{
 				params : {
 					input : _this.search,
-					city  : this.$store.state.city.position.city.replace('市','')
+					city  : _this.city.replace('市','')
 				}
 			}).then(function(res){
 				_this.searchList = res.status===200?res.data.top.slice(0,5):[]

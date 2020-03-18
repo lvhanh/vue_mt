@@ -55,14 +55,20 @@ export default {
 				type : 'travel',
 				name : '品质出游'
 			}],
-			list : []
+			list : [],
+			city : ''
+		}
+	},
+	created : function(){
+		if(process.client){
+			this.city = window.sessionStorage.getItem('changeCity')?window.sessionStorage.getItem('changeCity'):this.$store.state.city.position.city
 		}
 	},
 	mounted : function(){
 		let _this = this
 		axios.get('/search/resultsByKeywords',{
 				params: {
-					city    : _this.$store.state.city.position.city.replace('市',''),
+					city    : _this.city.replace('市',''),
 					keyword : 'all'
 				}
 			}).then(function(res){
@@ -89,7 +95,7 @@ export default {
 				_this   = this
 			axios.get('/search/resultsByKeywords',{
 				params: {
-					city    : _this.$store.state.city.position.city.replace('市',''),
+					city    : _this.city.replace('市',''),
 					keyword : keyword
 				}
 			}).then(function(res){
