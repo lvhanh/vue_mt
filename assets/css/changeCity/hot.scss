@@ -9,5 +9,15 @@
 		li{
 			list-style: none;
 		}
+		ul{
+			height: 40px;
+			line-height: 40px;
+			margin: 0;
+		}
+		.hotCity{
+			font-size: 14px;
+			color: #666;
+			cursor: pointer;
+		}
 	}
 }

@@ -1,0 +1,26 @@
+.m-catalogue{
+    font-size: 16px;
+	padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    .catalogue{
+        .py{
+            display: flex;
+            flex-wrap: wrap;
+            li{
+                list-style: none;
+            }
+            ul{
+                height: 25px;
+                line-height: 25px;
+                margin: 0 5px;
+                width: 25px;
+                padding: 0;
+            }
+            .zimu{
+                font-size: 14px;
+                color: #666;
+            }
+        }
+    }
+}
