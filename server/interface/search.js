@@ -97,6 +97,7 @@ router.get('/search/resultsByKeywords',async (ctx)=>{
     })
     ctx.body = {
         code : res.status===200?0:-1,
+        count: res.status===200?res.data.count:0,
         pois : res.status===200?res.data.pois:[]
     }
 })

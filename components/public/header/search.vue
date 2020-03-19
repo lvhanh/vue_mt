@@ -19,12 +19,12 @@
 						<dl class="noinput" v-if="isFocused">
 							<dt>热门搜索</dt>
 							<dd v-for="(item,index) in this.$store.state.menu.hotPlace.slice(0,5)" :key="index">
-								<a href="/">{{ item.name }}</a>
+								<a :href="'/product?city='+encodeURIComponent(city)+'&keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
 							</dd>
 						</dl>
 						<dl class="hasInput" v-if="isInput">
 							<dd v-for="(item,index) in searchList" :key="index">
-								<a href="/">{{ item.name }}</a>
+								<a :href="'/product?city='+encodeURIComponent(city)+'&keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
 							</dd>
 						</dl>
 					</div>
