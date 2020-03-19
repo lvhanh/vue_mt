@@ -1,0 +1,13 @@
+.m-crumb{
+	.crumb{
+		margin: 10px 0;
+		.el-breadcrumb{
+			font-size: 12px;
+			.el-breadcrumb__inner a, .el-breadcrumb__inner.is-link{
+				font-weight: 400;
+				color: #222;
+				cursor: pointer;
+			}
+		}
+	}
+}

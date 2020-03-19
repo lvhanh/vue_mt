@@ -3,8 +3,10 @@
         <div class="m-crumb">
             <mcrumb :city="city" :keyword="keyword" />
         </div>
-        <div class="m-area">
-            <marea />
+        <div class="m-left">
+            <marea 
+            :sort="sort" 
+            :area="area" />
         </div>
     </div>
 </template>
@@ -20,7 +22,10 @@ export default {
     data(){
         return {
             city    : '',
-            keyword : ''
+            keyword : '',
+            sort    : [],
+            area    : [],
+            list    : []
         }
     },
     async asyncData(ctx){
@@ -32,10 +37,18 @@ export default {
                 keyword : keyword
             }
         })
-        if(res.status===200){
+        let res2 = await ctx.$axios.get('/product/area',{
+            params : {
+                city : city
+            }
+        })
+        if(res.status===200&&res2.status===200){
             return {
                 city : city,
-                keyword : keyword
+                keyword : keyword,
+                poi     : res.data.pois,
+                sort    : res2.data.sort.filter(item=>item.type!=='').slice(0,5),
+                area    : res2.data.area.filter(item=>item.type!=='').slice(0,5)
             }
         }
     }
