@@ -1,26 +1,26 @@
 <template>
-    <div class="area">
+    <div class="m-area left-width">
+        <div class="top-menu">
+            <label>分类</label>
+            <span>全部</span>
+            <div class="sorts border">
+                <div class="sort"
+                v-for="(item,index) in sort" :key="index">
+                    <iselect 
+                    :name="item.type"
+                    :list="item.module.slice(0,30)" />
+                </div>
+            </div>
+        </div>
         <div class="top-menu">
             <label>分类</label>
             <span>全部</span>
             <div class="sorts">
                 <div class="sort"
-                v-for="(item,index) in sort" :key="index">
+                v-for="(item,index) in areaNull" :key="index">
                     <iselect 
                     :name="item.type"
-                    :list="item.module" />
-                </div>
-            </div>
-        </div>
-        <div class="bottom-menu">
-            <label>分类</label>
-            <span>全部</span>
-            <div class="areas">
-                <div class="area"
-                v-for="(item,index) in area" :key="index">
-                    <iselect 
-                    :name="item.type"
-                    :list="item.module" />
+                    :list="item.module.slice(0,24)" />
                 </div>
             </div>
         </div>
@@ -48,9 +48,22 @@ export default {
             default : []
         }
     },
-    methods : {
-        enter : function(){
-
+    computed : {
+        areaNull : function(){
+            let arr = this.area
+            let newArr = []
+            for(let i=0;i<arr.length;i++){
+                let arrs = []
+                arrs = arr[i].module.filter(function(item){
+                    return item&&item.trim()
+                })
+                let list = {
+                    type : arr[i].type,
+                    module : arrs
+                }
+                newArr.push(list)
+            }
+            return newArr
         }
     }
 }

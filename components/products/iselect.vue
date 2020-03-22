@@ -2,9 +2,11 @@
 	<dl class="tab">
 		<dt @mouseenter="enter"
 		@mouseleave="leave">{{ name }}<i class="el-icon-caret-bottom" /></dt>
-		<dd v-if="active" @mouseenter="enter" @mouseleave="leave">
+		<dd v-if="active" @mouseenter="childEnter" @mouseleave="leave" class="menu">
 			<h3>{{ name }}</h3>
-			<span v-for="(item,index) in list" :key="index">{{ item }}</span>
+			<div class="item">
+				<span v-for="(item,index) in list" :key="index">{{ item }}</span>
+			</div>
 		</dd>
 	</dl>
 </template>
@@ -28,12 +30,18 @@ export default {
 		}
 	},
 	methods : {
-		enter : _.debounce(function(){
+		enter : function(){
 			this.active = true
-		},400),
-		leave : _.debounce(function(){
-			this.active = false
-		},400)
+		},
+		leave : function(){
+			let _this = this
+			this.timer = setTimeout(function(){
+				_this.active = false
+			},200)
+		},
+		childEnter : function(){
+			clearTimeout(this.timer)
+		}
 	}
 }
 </script>

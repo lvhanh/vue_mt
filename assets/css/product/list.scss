@@ -1,0 +1,44 @@
+.m-left{
+	.m-list{
+		background: #fff;
+		border: 1px solid #e5e5e5;
+		border-radius: 4px;
+		color: #333;
+		font-size: 14px;
+		.m-sort{
+			padding: 15px 20px 2px 20px;
+			.tri{
+				width: 0;
+				height: 0;
+				border-left: 3px solid transparent;
+				border-right: 3px solid transparent;
+				border-bottom: 6px solid #222;
+				margin-bottom: 2px;
+			}
+			.tri-re{
+				width: 0;
+				height: 0;
+				border-left: 3px solid transparent;
+				border-right: 3px solid transparent;
+				border-top: 6px solid #222;
+			}
+			dl{
+				display: flex;
+				flex-direction: row;
+				.normal{
+					height: 20px;
+					line-height: 20px;
+					padding: 0 10px;
+					margin-right: 30px;
+					>div{
+						width: 6px;
+						float: right;
+						//height: 20px;
+						margin-top: 3px;
+						margin-left: 4px;
+					}
+				}
+			}
+		}
+	}
+}

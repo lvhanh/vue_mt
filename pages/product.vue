@@ -7,6 +7,7 @@
             <marea 
             :sort="sort" 
             :area="area" />
+            <mlist />
         </div>
     </div>
 </template>
@@ -14,10 +15,12 @@
 <script>
 import Mcrumb from '../components/products/crumb'
 import Marea from '../components/products/area'
+import Mlist from '../components/products/list'
 export default {
     components : {
         Mcrumb,
-        Marea
+        Marea,
+        Mlist
     },
     data(){
         return {
@@ -48,7 +51,7 @@ export default {
                 keyword : keyword,
                 poi     : res.data.pois,
                 sort    : res2.data.sort.filter(item=>item.type!=='').slice(0,5),
-                area    : res2.data.area.filter(item=>item.type!=='').slice(0,5)
+                area    : res2.data.area.filter(item=>item.type!=='')
             }
         }
     }

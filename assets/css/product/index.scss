@@ -1,8 +1,12 @@
 @import './crumb.scss';
 @import './area.scss';
+@import './list.scss';
 
 .m-product{
 	width: 1190px;
 	margin: 0 auto;
 	padding-top: 10px;
+	.left-width{
+		width: 940px;
+	}
 }
