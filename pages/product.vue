@@ -7,7 +7,8 @@
             <marea 
             :sort="sort" 
             :area="area" />
-            <mlist />
+            <mlist 
+            :list="list" />
         </div>
     </div>
 </template>
@@ -49,7 +50,18 @@ export default {
             return {
                 city : city,
                 keyword : keyword,
-                poi     : res.data.pois,
+                list    : res.data.pois.map(item=>{
+                    return {
+                        name : item.name,
+                        type : item.type,
+                        rate : item.biz_ext.rating,
+                        adr  : item.address,
+                        cost : item.biz_ext.cost,
+                        location: item.location,
+                        tag  : item.tag,
+                        photo: item.photos.length?item.photos.filter(item=>item!=='')[0].url:[]
+                    }
+                }),
                 sort    : res2.data.sort.filter(item=>item.type!=='').slice(0,5),
                 area    : res2.data.area.filter(item=>item.type!=='')
             }
