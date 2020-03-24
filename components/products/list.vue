@@ -5,7 +5,7 @@
 		</div>
 		<div class="m-content">
 			<mcontent 
-			:product="list" />
+			:product="newlist" />
 		</div>
 	</div>
 </template>
@@ -18,11 +18,19 @@ export default {
 		Msort,
 		Mcontent
 	},
+	data(){
+		return {
+			newlist : []
+		}
+	},
 	props : {
 		list : {
 			type : Array,
 			default : []
 		}
+	},
+	mounted : function(){
+		this.newlist = this.list
 	}
 }
 </script>

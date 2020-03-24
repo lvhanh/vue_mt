@@ -53,12 +53,12 @@ export default {
                 list    : res.data.pois.map(item=>{
                     return {
                         name : item.name,
-                        type : item.type,
-                        rate : item.biz_ext.rating,
+                        type : item.type.split(';').join('|'),
+                        rate : item.biz_ext.rating?Number(item.biz_ext.rating):0,
                         adr  : item.address,
-                        cost : item.biz_ext.cost,
+                        cost : item.biz_ext.cost?Number(item.biz_ext.cost):'暂无',
                         location: item.location,
-                        tag  : item.tag,
+                        tag  : item.tag.length?item.tag:'暂无介绍',
                         photo: item.photos.length?item.photos.filter(item=>item!=='')[0].url:[]
                     }
                 }),
