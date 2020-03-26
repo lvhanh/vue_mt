@@ -15,7 +15,8 @@
 						@focus="Focus"
 						@blur="blur"
 						@input="input" />
-						<el-button type="primary" icon="el-icon-search" class="button" />
+						<el-button type="primary" icon="el-icon-search" class="button"
+						@click="button" />
 						<dl class="noinput" v-if="isFocused">
 							<dt>热门搜索</dt>
 							<dd v-for="(item,index) in this.$store.state.menu.hotPlace.slice(0,5)" :key="index">
@@ -92,7 +93,12 @@ export default {
 			}).then(function(res){
 				_this.searchList = res.status===200?res.data.top.slice(0,5):[]
 			})
-		},200)
+		},200),
+		button : function(){
+			let _search = this.search,
+				_city   = this.city
+			location.href=`/product?city=${encodeURIComponent(_city)}&keyword=${_search}`
+		}
 	}
 }
 </script>

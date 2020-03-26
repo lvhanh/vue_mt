@@ -1,5 +1,9 @@
 <template>
     <div class="m-area left-width">
+        <div class="search">
+            搜索：
+            <span>{{ city }}</span>
+        </div>
         <div class="top-menu">
             <label>分类</label>
             <span>全部</span>
@@ -35,7 +39,8 @@ export default {
     },
     data(){
         return {
-            active : ''
+            active : '',
+            city   : ''
         }
     },
     props : {

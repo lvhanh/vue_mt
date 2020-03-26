@@ -22,7 +22,7 @@
 					</div>
 				</dd>
 				<dd class="popular normal">人气最高</dd>
-				<dd class="grade normal">评价最高</dd>
+				<dd class="grade normal" @click="change('rate')">评价最高</dd>
 			</dl>
 		</div>
 		<div class="m-content">
@@ -52,7 +52,8 @@ export default {
 	data(){
 		return {
 			newlist : [],
-			arr     : [],
+			listup  : [],
+			listdown: [],
 			num : 1,
 			pageSize : 10,
 			currentPage : 1
@@ -65,40 +66,39 @@ export default {
 		}
 	},
 	mounted : function(){
-		this.arr = this.list
 		this.newlist = this.list
 		this.num = 1
-		console.log(this.arr)
 	},
 	methods : {
 		down(item){
-			this.newlist=[]
-			this.newlist=this.arr.sort((a,b)=>a.item-b.item).reverse()
+			this.listdown=[]
+			this.listdown=this.list.sort((a,b)=>a[item]-b[item]).reverse()
+			// 类名做参数用[]
 		},
 		up(item){
-			this.newlist=[]
-			this.newlist=this.arr.sort((a,b)=>a.item-b.item)
+			this.listup=[]
+			this.listup=this.list.sort((a,b)=>a[item]-b[item])
 		},
 		change(items){
 			if(items==='cost'){
 				if(this.num===1){
 					this.num=3
-					this.down('cost')
-					console.log(this.newlist)
-					console.log(this.arr)
+					this.down(items)
+					this.newlist = this.listdown
 				}
 				else if(this.num===3){
 					this.num=2
-					this.up('cost')
-					console.log(this.newlist)
-					console.log(this.arr)
+					this.up(items)
+					this.newlist = this.listup
 				}
 				else if(this.num===2){
 					this.num=3
-					this.down('cost')
-					console.log(this.newlist)
-					console.log(this.arr)
+					this.down(items)
+					this.newlist = this.listdown
 				}
+			}else {
+				this.down(items)
+				this.newlist = this.listdown
 			}
 		},
 		handleSizeChange(size){

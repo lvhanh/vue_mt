@@ -33,8 +33,8 @@ export default {
         }
     },
     async asyncData(ctx){
-        let city = ctx.query.city
-        let keyword = ctx.query.keyword
+        let city = decodeURIComponent(ctx.query.city)
+        let keyword = decodeURIComponent(ctx.query.keyword)
         let res = await ctx.$axios.get('/search/resultsByKeywords',{
             params : {
                 city : city,
@@ -55,8 +55,8 @@ export default {
                         'name' : item.name,
                         'type' : item.type.split(';').join('|'),
                         'rate' : item.biz_ext.rating?Number(item.biz_ext.rating):0,
-                        'adr'  : item.address,
-                        'cost' : item.biz_ext.cost?Number(item.biz_ext.cost):0,
+                        'adr'  : item.address.length?item.address:'',
+                        'cost' : item.biz_ext.cost?Number(item.biz_ext.cost):Number(0),
                         'location': item.location,
                         'tag'  : item.tag.length?item.tag:'暂无介绍',
                         'photo': item.photos.length?item.photos.filter(item=>item!=='')[0].url:[]
