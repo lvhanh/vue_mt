@@ -14,7 +14,8 @@
 						v-model="search" class="input"
 						@focus="Focus"
 						@blur="blur"
-						@input="input" />
+						@input="input"
+						@keyup.enter.native="submit" />
 						<el-button type="primary" icon="el-icon-search" class="button"
 						@click="button" />
 						<dl class="noinput" v-if="isFocused">
@@ -98,6 +99,9 @@ export default {
 			let _search = this.search,
 				_city   = this.city
 			location.href=`/product?city=${encodeURIComponent(_city)}&keyword=${_search}`
+		},
+		submit : function(){
+			this.button()
 		}
 	}
 }

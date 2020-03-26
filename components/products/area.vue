@@ -1,8 +1,11 @@
 <template>
     <div class="m-area left-width">
-        <div class="search">
-            搜索：
-            <span>{{ city }}</span>
+        <div class="search" v-if="click">
+            <p>已选条件</p>
+            <span class="city" @click="cancel">
+                {{ newCity }}
+                <i class="el-icon-close" />
+            </span>
         </div>
         <div class="top-menu">
             <label>分类</label>
@@ -24,7 +27,8 @@
                 v-for="(item,index) in areaNull" :key="index">
                     <iselect 
                     :name="item.type"
-                    :list="item.module.slice(0,24)" />
+                    :list="item.module.slice(0,24)"
+                    @changeCity="changeCity" />
                 </div>
             </div>
         </div>
@@ -40,7 +44,9 @@ export default {
     data(){
         return {
             active : '',
-            city   : ''
+            city   : '',
+            newCity: '',
+            click  : false
         }
     },
     props : {
@@ -69,6 +75,16 @@ export default {
                 newArr.push(list)
             }
             return newArr
+        }
+    },
+    methods : {
+        changeCity(x){
+            this.$emit('change',x)
+            this.newCity = x
+            this.click = true
+        },
+        cancel(){
+            this.$router.go(0)
         }
     }
 }

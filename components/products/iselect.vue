@@ -5,7 +5,8 @@
 		<dd v-if="active" @mouseenter="childEnter" @mouseleave="leave" class="menu">
 			<h3>{{ name }}</h3>
 			<div class="item">
-				<span v-for="(item,index) in list" :key="index">{{ item }}</span>
+				<span v-for="(item,index) in list" :key="index"
+				@click="city(item)">{{ item }}</span>
 			</div>
 		</dd>
 	</dl>
@@ -41,6 +42,9 @@ export default {
 		},
 		childEnter : function(){
 			clearTimeout(this.timer)
+		},
+		city : function(x){
+			this.$emit('changeCity',x)
 		}
 	}
 }
