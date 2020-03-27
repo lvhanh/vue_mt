@@ -11,6 +11,10 @@
             <mlist 
             :list="list" />
         </div>
+        <div class="map">
+            <amap
+            :point="point" />
+        </div>
     </div>
 </template>
 
@@ -18,12 +22,14 @@
 import Mcrumb from '../components/products/crumb'
 import Marea from '../components/products/area'
 import Mlist from '../components/products/list'
+import Amap from '../components/public/map'
 import axios from 'axios'
 export default {
     components : {
         Mcrumb,
         Marea,
-        Mlist
+        Mlist,
+        Amap
     },
     data(){
         return {
@@ -32,7 +38,8 @@ export default {
             keyword : '',
             sort    : [],
             area    : [],
-            list    : []
+            list    : [],
+            point   : []
         }
     },
     async asyncData(ctx){
@@ -66,7 +73,12 @@ export default {
                     }
                 }),
                 sort    : res2.data.sort.filter(item=>item.type!=='').slice(0,5),
-                area    : res2.data.area.filter(item=>item.type!=='')
+                area    : res2.data.area.filter(item=>item.type!==''),
+                point   : res.data.pois.map(item=>{
+                    return {
+                        location : item.location.length?item.location.split(','):[]
+                    }
+                })
             }
         }
     },
