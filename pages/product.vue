@@ -11,7 +11,7 @@
             <mlist 
             :list="list" />
         </div>
-        <div class="map">
+        <div class="map" :class="{fixed:active}">
             <amap
             :point="point" />
         </div>
@@ -33,6 +33,7 @@ export default {
     },
     data(){
         return {
+            active  : false,
             city    : '',
             newCity : '',
             keyword : '',
@@ -41,6 +42,17 @@ export default {
             list    : [],
             point   : []
         }
+    },
+    mounted(){
+        let _this = this
+        window.addEventListener('scroll',function(){
+            let height = document.documentElement.scrollTop
+            if(height > 255){
+                _this.active = true
+            }else {
+                _this.active = false
+            }
+        })
     },
     async asyncData(ctx){
         let city = decodeURIComponent(ctx.query.city)
@@ -75,9 +87,7 @@ export default {
                 sort    : res2.data.sort.filter(item=>item.type!=='').slice(0,5),
                 area    : res2.data.area.filter(item=>item.type!==''),
                 point   : res.data.pois.map(item=>{
-                    return {
-                        location : item.location.length?item.location.split(','):[]
-                    }
+                    return item.location.length?item.location:''
                 })
             }
         }

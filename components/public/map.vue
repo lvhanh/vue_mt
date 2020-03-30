@@ -1,5 +1,7 @@
 <template>
-    <div id="container"></div>
+    <div class="map">
+        <div id="container"></div>
+    </div>
 </template>
 
 <script>
@@ -16,32 +18,31 @@ export default {
         }
     },
     mounted : function(){
-        console.log(this.point)
         let _this = this
         window.loadMap = function(){
             var map = new window.AMap.Map('container',{
                 resizeEnable : true,
-                zoom : 10,
-                center: _this.point
+                zoom : 12
             })
-            window.Amap.plugin(['Amap.ToolBar'],function(){
-                map.addControl(new window.Amap.ToolBar())
-                for(let i=0;i<_this.point.length;i++){
-                    var marker = []
-                    marker[i] = new window.Amap.Marker({
-                        position : _this.point[i].location,
-                        icon : 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png'
-                    })
-                    var markerList = []
-                    markerList.push(marker[i])
+            var markers = _this.point.map(item=>{
+                return {
+                    icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
+                    position : item.split(',')
                 }
-                _this.map.add(markerList)
+            })
+            markers.forEach(item=>{
+                new AMap.Marker({
+                    map : map,
+                    icon: item.icon,
+                    position: [item.position[0],item.position[1]],
+                    offset: new AMap.Pixel(-13,30)
+                })
             })
         }
         var url = `https://webapi.amap.com/maps?v=1.4.15&key=${_this.key}&callback=loadMap`
         var jsapi = document.createElement('script')
         jsapi.charset = 'utf-8'
-        jsapi.scr = url
+        jsapi.src = url
         document.head.appendChild(jsapi)
     }
 }

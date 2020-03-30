@@ -1,12 +1,27 @@
 @import './crumb.scss';
 @import './area.scss';
 @import './list.scss';
+@import './map.scss';
 
 .m-product{
+	padding-top: 10px;
 	width: 1190px;
 	margin: 0 auto;
-	padding-top: 10px;
-	.left-width{
-		width: 940px;
+	.m-left{
+		display: inline-block;
+		width: 950px;
+		.left-width{
+			width: 950px;
+		}
+	}
+	.map{
+		display: inline-block;
+		width: 250px;
+		margin-left: 10px;
+		position: absolute;
+	}
+	.fixed{
+		position: fixed;
+		top: 0;
 	}
 }
