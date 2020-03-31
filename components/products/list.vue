@@ -27,7 +27,8 @@
 		</div>
 		<div class="m-content">
 			<mcontent 
-			:product="newlist.slice((currentPage-1)*pageSize,currentPage*pageSize)" />
+			:product="newlist.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+			:city="city" />
 		</div>
 		<div class="pagination">
 			<el-pagination
@@ -63,6 +64,10 @@ export default {
 		list : {
 			type : Array,
 			default : []
+		},
+		city : {
+			type : String,
+			default: ''
 		}
 	},
 	mounted : function(){

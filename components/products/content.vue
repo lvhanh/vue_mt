@@ -5,7 +5,12 @@
 				<img :src="item.photo" />
 			</div>
 			<div class="text">
-				<div class="name">{{ item.name }}</div>
+				<div class="name">
+					<nuxt-link 
+					:to="{path: 'detail',
+					query:{keyword: encodeURIComponent(item.name),city: encodeURIComponent(city),type: encodeURIComponent(item.type)}}">
+					{{ item.name }}</nuxt-link>
+				</div>
 				<div class="rate">
 					<el-rate
 					v-model="item.rate"
@@ -38,6 +43,10 @@ export default {
 		product : {
 			type : Array,
 			default : []
+		},
+		city : {
+			type : String,
+			default: ''
 		}
 	}
 }

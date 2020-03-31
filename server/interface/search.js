@@ -102,4 +102,26 @@ router.get('/search/resultsByKeywords',async (ctx)=>{
     }
 })
 
+router.get('/search/product',async ctx=>{
+    let res = await axios.get('http://cp-tools.cn/search/products',{
+        params : {
+            city : ctx.query.city,
+            keyword : ctx.query.keyword
+        }
+    })
+    if(res.status===200){
+        ctx.body = {
+            product : res.data.product,
+            more    : ctx.isAuthenticated()?res.data.more:[],
+            login   : ctx.isAuthenticated()
+        }
+    }else {
+        ctx.body = {
+            product : {},
+            more    : ctx.isAuthenticated()?res.data.more:[],
+            login   : ctx.isAuthenticated()
+        }
+    }
+})
+
 export default router
