@@ -56,17 +56,18 @@ export default {
         })
     },
     async asyncData(ctx){
-        let city = decodeURIComponent(ctx.query.city)
-        let keyword = decodeURIComponent(ctx.query.keyword)
-        let res = await axios.get('/search/resultsByKeywords',{
+        let city = ctx.query.city
+        console.log(city)
+        let keyword = ctx.query.keyword
+        let res = await ctx.$axios.get('/search/resultsByKeywords',{
             params : {
-                city : city,
+                city : city.replace('市',''),
                 keyword : keyword
             }
         })
-        let res2 = await axios.get('/product/area',{
+        let res2 = await ctx.$axios.get('/product/area',{
             params : {
-                city : city
+                city : city.replace('市','')
             }
         })
         if(res.status===200&&res2.status===200){

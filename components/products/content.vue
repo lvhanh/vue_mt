@@ -6,10 +6,7 @@
 			</div>
 			<div class="text">
 				<div class="name">
-					<router-link 
-					:to="{path: 'detail',
-					query:{keyword: encodeURIComponent(item.name),city: encodeURIComponent(city),type: encodeURIComponent(item.type)}}">
-					{{ item.name }}</router-link>
+					<a :href="'/detail?city='+city+'&keyword='+encodeURIComponent(item.name)+'&type='+item.type">{{ item.name }}</a>
 				</div>
 				<div class="rate">
 					<el-rate

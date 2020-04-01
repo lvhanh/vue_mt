@@ -18,15 +18,17 @@
 						@keyup.enter.native="submit" />
 						<el-button type="primary" icon="el-icon-search" class="button"
 						@click="button" />
-						<dl class="noinput" v-if="isFocused">
+						<dl class="noinput" v-if="isFocus">
 							<dt>热门搜索</dt>
 							<dd v-for="(item,index) in this.$store.state.menu.hotPlace.slice(0,5)" :key="index">
-								<router-link :to="{path: 'product',query: {city: encodeURIComponent(city),keyword: encodeURIComponent(item.name)}}">{{ item.name }}</router-link>
+								<!-- <router-link :to="{path: 'product',query: {city: city,keyword: item.name}}">{{ item.name }}</router-link> -->
+								<a :href="'/product?city='+city+'&keyword='+item.name">{{ item.name }}</a>
 							</dd>
 						</dl>
 						<dl class="hasInput" v-if="isInput">
 							<dd v-for="(item,index) in searchList" :key="index">
-								<router-link :to="{path: 'product',query: {city: encodeURIComponent(city),keyword: encodeURIComponent(item.name)}}">{{ item.name }}</router-link>
+								<!-- <router-link :to="{path: '/product',query: {city: city,keyword: item.name}}">{{ item.name }}</router-link> -->
+								<a :href="'/product?city='+city+'&keyword='+item.name">{{ item.name }}</a>
 							</dd>
 						</dl>
 					</div>
@@ -64,7 +66,12 @@ export default {
 		let _this = this
 			if(process.client){
             _this.city = window.sessionStorage.getItem('changeCity')?window.sessionStorage.getItem('changeCity'):_this.$store.state.city.position.city
-        }
+			}
+	},
+	watch : {
+		'$route' (to,from){
+			this.$router.go(0)
+		}
 	},
 	computed:{
 		isFocused : function(){
@@ -98,8 +105,8 @@ export default {
 		button : function(){
 			let _search = this.search,
 				_city   = this.city
-			//location.href=`/product?city=${encodeURIComponent(_city)}&keyword=${_search}`
-			this.$router.push({path: '/product',query: {city: encodeURIComponent(_city),keyword: encodeURIComponent(_search)}})
+			location.href=`/product?city=${_city}&keyword=${_search}`
+			// this.$router.push({path: 'product',query: {city: _city,keyword: _search}})
 		},
 		submit : function(){
 			this.button()

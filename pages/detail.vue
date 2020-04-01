@@ -16,7 +16,7 @@ export default {
 		},
 		async asyncData(ctx){
 			let {city,keyword,type}=ctx.query
-			let res = await axios.get('/search/product',{
+			let res = await ctx.$axios.get('/search/product',{
 				params : {
 					city : decodeURIComponent(city),
 					keyword : decodeURIComponent(keyword),
