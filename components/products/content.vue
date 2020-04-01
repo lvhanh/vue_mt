@@ -6,10 +6,10 @@
 			</div>
 			<div class="text">
 				<div class="name">
-					<nuxt-link 
+					<router-link 
 					:to="{path: 'detail',
 					query:{keyword: encodeURIComponent(item.name),city: encodeURIComponent(city),type: encodeURIComponent(item.type)}}">
-					{{ item.name }}</nuxt-link>
+					{{ item.name }}</router-link>
 				</div>
 				<div class="rate">
 					<el-rate

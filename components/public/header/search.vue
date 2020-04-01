@@ -21,12 +21,12 @@
 						<dl class="noinput" v-if="isFocused">
 							<dt>热门搜索</dt>
 							<dd v-for="(item,index) in this.$store.state.menu.hotPlace.slice(0,5)" :key="index">
-								<a :href="'/product?city='+encodeURIComponent(city)+'&keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+								<router-link :to="{path: 'product',query: {city: encodeURIComponent(city),keyword: encodeURIComponent(item.name)}}">{{ item.name }}</router-link>
 							</dd>
 						</dl>
 						<dl class="hasInput" v-if="isInput">
 							<dd v-for="(item,index) in searchList" :key="index">
-								<a :href="'/product?city='+encodeURIComponent(city)+'&keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+								<router-link :to="{path: 'product',query: {city: encodeURIComponent(city),keyword: encodeURIComponent(item.name)}}">{{ item.name }}</router-link>
 							</dd>
 						</dl>
 					</div>
@@ -98,7 +98,8 @@ export default {
 		button : function(){
 			let _search = this.search,
 				_city   = this.city
-			location.href=`/product?city=${encodeURIComponent(_city)}&keyword=${_search}`
+			//location.href=`/product?city=${encodeURIComponent(_city)}&keyword=${_search}`
+			this.$router.push({path: '/product',query: {city: encodeURIComponent(_city),keyword: encodeURIComponent(_search)}})
 		},
 		submit : function(){
 			this.button()
