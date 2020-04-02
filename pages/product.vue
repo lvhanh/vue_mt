@@ -57,7 +57,6 @@ export default {
     },
     async asyncData(ctx){
         let city = ctx.query.city
-        console.log(city)
         let keyword = ctx.query.keyword
         let res = await ctx.$axios.get('/search/resultsByKeywords',{
             params : {
