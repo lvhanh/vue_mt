@@ -4,15 +4,31 @@
 			:city="city"
 			:keyword="keyword"
 			:type="type" />
+			<div class="m-title">
+				<mtitle
+				:product="product" />
+			</div>
 		</div>
 </template>
 
 <script>
 import axios from 'axios'
 import Mcrumb from '../components/detail/crumb'
+import Mtitle from '../components/detail/title'
 export default {
     components : {
-			Mcrumb
+			Mcrumb,
+			Mtitle
+		},
+		data(){
+			return {
+				type    : '',
+				city    : '',
+				keyword : '',
+				product : [],
+				more    : [],
+				login   : Boolean
+			}
 		},
 		async asyncData(ctx){
 			let {city,keyword,type}=ctx.query
@@ -27,7 +43,15 @@ export default {
 					type    : decodeURIComponent(type),
 					city    : decodeURIComponent(city),
 					keyword : decodeURIComponent(keyword),
-					product : res.data.product,
+					product : {
+						name : res.data.product.name,
+						rate : Number(res.data.product.biz_ext.rating),
+						cost : Number(res.data.product.biz_ext.cost),
+						addr : res.data.product.address,
+						phone: res.data.product.tel,
+						time : '周一至周日 10:30-21:00',
+						photo: res.data.product.photos.length?res.data.product.photos[0].url:''
+					},
 					more    : res.data.more,
 					login   : res.data.login
 				}
@@ -46,5 +70,5 @@ export default {
 </script>
 
 <style lang="scss">
-
+	@import '../assets/css/detail/index.scss'
 </style>

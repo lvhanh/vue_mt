@@ -106,7 +106,7 @@ export default {
 			let _search = this.search,
 				_city   = this.city
 			location.href=`/product?city=${_city}&keyword=${_search}`
-			// this.$router.push({path: 'product',query: {city: _city,keyword: _search}})
+			//this.$router.push({path: 'product',query: {city: _city,keyword: _search}})
 		},
 		submit : function(){
 			this.button()
