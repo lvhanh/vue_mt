@@ -32,9 +32,6 @@ export default {
 			type : Object,
 			default: {}
 		}
-	},
-	mounted(){
-		console.log(this.product)
 	}
 }
 </script>

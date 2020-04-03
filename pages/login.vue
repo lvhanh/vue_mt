@@ -19,13 +19,13 @@
 					v-model="form.username">
 					</el-input>
 					<el-input placeholder="请输入密码" class="input"
-					v-model="form.pwd">
+					v-model="form.pwd" @keyup.enter.native="Login">
 					</el-input>
 					<a href="">忘记密码？</a>
 					<button class="button"
 					@click="Login">登录</button>
 					<p class="signup">还没有账号？
-						<a href="/register">免费注册</a>
+						<router-link to="/register">免费注册</router-link>
 					</p>
 				</div>
 			</div>
@@ -36,6 +36,7 @@
 <script>
 import axios from 'axios'
 import Crypto from 'crypto-js'
+import _ from 'lodash'
 export default {
 	layout : 'blank',
 	data(){
@@ -60,9 +61,13 @@ export default {
 				if(res.status===200){
 					_this.msg = ''
 					if(res.data&&res.data.code===0){
+						clearTimeout(_this.timer)
 						location.href='/'
 					}else{
 						_this.msg = res.data.msg
+						_this.timer = setTimeout(function(){
+							_this.msg = ''
+						},2000)
 					}
 				}else{
 					_this.msg = `连接服务器出错，${res.status}`

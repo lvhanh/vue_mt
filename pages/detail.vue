@@ -1,24 +1,43 @@
 <template>
     <div class="m-detail">
-			<mcrumb
-			:city="city"
-			:keyword="keyword"
-			:type="type" />
-			<div class="m-title">
-				<mtitle
-				:product="product" />
+		<mcrumb
+		:city="city"
+		:keyword="keyword"
+		:type="type" />
+		<div class="m-title">
+			<mtitle
+			:product="product" />
+		</div>
+		<div class="m-list">
+			<h3 class="title">
+				商家团购及优惠
+			</h3>
+			<div class="list">
+				<mlist
+				:more="more" v-if="login" />
+				<div class="login" v-if="!login">
+					<img 
+					src="//p0.meituan.net/codeman/56a7d5abcb5ce3d90fc91195e5b5856911194.png" 
+					alt="登录查看" />
+					<span>请登录后查看详细团购优惠</span>
+					<el-button type="primary" round
+					@click="goLogin">立即登录</el-button>
+				</div>
 			</div>
 		</div>
+	</div>
 </template>
 
 <script>
 import axios from 'axios'
 import Mcrumb from '../components/detail/crumb'
 import Mtitle from '../components/detail/title'
+import Mlist from '../components/detail/list'
 export default {
     components : {
 			Mcrumb,
-			Mtitle
+			Mtitle,
+			Mlist
 		},
 		data(){
 			return {
@@ -52,7 +71,7 @@ export default {
 						time : '周一至周日 10:30-21:00',
 						photo: res.data.product.photos.length?res.data.product.photos[0].url:''
 					},
-					more    : res.data.more,
+					more    : res.data.more.length?res.data.more:[],
 					login   : res.data.login
 				}
 			}else {
@@ -64,6 +83,11 @@ export default {
 					more    : [],
 					login   : false
 				}
+			}
+		},
+		methods : {
+			goLogin(){
+				this.$router.push({path : '/login'})
 			}
 		}
 }
