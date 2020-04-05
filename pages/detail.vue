@@ -10,7 +10,7 @@
 		</div>
 		<div class="m-list">
 			<h3 class="title">
-				商家团购及优惠
+				更多商家
 			</h3>
 			<div class="list">
 				<mlist
@@ -71,7 +71,13 @@ export default {
 						time : '周一至周日 10:30-21:00',
 						photo: res.data.product.photos.length?res.data.product.photos[0].url:''
 					},
-					more    : res.data.more.length?res.data.more:[],
+					more    : res.data.more.length?res.data.more.map(item=>{
+						return {
+							name : item.name,
+							cost : Number(item.biz_ext.cost),
+							photo: item.photos.length?item.photos[0].url:''
+						}
+					}):[],
 					login   : res.data.login
 				}
 			}else {
@@ -87,7 +93,10 @@ export default {
 		},
 		methods : {
 			goLogin(){
-				this.$router.push({path : '/login'})
+				this.$router.push({
+					path : 'login',
+					query:{redirect: location.hostname}
+				})
 			}
 		}
 }

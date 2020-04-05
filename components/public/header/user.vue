@@ -35,6 +35,7 @@ export default {
 					_this.user = ''
 				}
 			})
+			this.$router.go(0)
 		}
 	}
 }

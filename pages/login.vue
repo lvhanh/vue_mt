@@ -62,7 +62,12 @@ export default {
 					_this.msg = ''
 					if(res.data&&res.data.code===0){
 						clearTimeout(_this.timer)
-						location.href='/'
+						let hostname = _this.$route.query.redirect
+						if(location.name = hostname){
+							_this.$router.go(-1)
+						}else{
+							_this.$router.push({path : '/'})
+						}
 					}else{
 						_this.msg = res.data.msg
 						_this.timer = setTimeout(function(){

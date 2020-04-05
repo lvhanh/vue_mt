@@ -9,15 +9,15 @@
 			line-height: 50px;
 			margin: 0 auto;
 			padding: 10px 0;
+			display: flex;
 			.tp{
-				float: left;
 				width: 128px;
 				>img{
 					width: 128px;
 				}
 			}
 			.login{
-				float: right;
+				text-align: right;
 				>span{
 					color: #666;
 				}
