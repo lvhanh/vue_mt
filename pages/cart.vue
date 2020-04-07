@@ -1,6 +1,8 @@
 <template>
     <div class="m-list">
-        <mlist />
+        <div class="list">
+            <mlist />
+        </div>
     </div>
 </template>
 
@@ -14,5 +16,5 @@ export default {
 </script>
 
 <style lang="scss">
-
+    @import '../assets/css/cart/index.scss'
 </style>
