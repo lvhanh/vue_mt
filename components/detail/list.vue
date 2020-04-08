@@ -41,7 +41,7 @@ export default {
 				cartName : items.name
 			}).then(function(res){
 				if(res.status===200&&res.data.code===0){
-					_this.$router.push({path: 'cart',query: {id: id}})
+					_this.$router.push({path: 'cart',query: {id:id}})
 				}
 			})
 		}

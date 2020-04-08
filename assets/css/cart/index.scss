@@ -1,9 +1,41 @@
-body{
-	.m-list{
-		.list{
-			width: 980px;
-			margin: 10px auto 0;
-			padding: 10px 0 65px;
+.m-list{
+	background: #fff;
+	.list{
+		width: 980px;
+		margin: 10px auto 0;
+		padding: 10px 0 65px;
+		.el-table{
+			padding-bottom: 30px;
+		}
+		.bottom{
+			text-align: right;
+			.text{
+				display: block;
+				padding: 12px;
+				border-bottom: 1px solid #e5e5e5;
+				line-height: 35px;
+				font-size: 12px;
+				font-weight: bolder;
+				color: #666;
+				span{
+					font-size: 20px;
+					color: #f76120;
+				}
+			}
+			.submit{
+				margin-top: 60px;
+				padding: 5px 20px 4px;
+				font-size: 20px;
+				font-weight: 400;
+				color: #fff;
+				background: #2db3a6;
+				background-image: linear-gradient(to bottom,#2ec3b4,#2db3a6);
+				border-color: #008177;
+				border-radius: 2px;
+				border-width: 0 0 1px;
+				letter-spacing: 2px;
+				cursor: pointer;
+			}
 		}
 	}
 }

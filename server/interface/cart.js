@@ -31,12 +31,12 @@ router.post('/cart/createCart',async ctx=>{
 })
 
 router.post('/cart/getCart',async ctx=>{
-    let {cartNo} = ctx.request.body
-    let result = await Cart.findOne({cartNo})
+    let cartNo = ctx.request.body.cartNo
+    let result = await Cart.findOne({cartNo:cartNo})
     if(result){
         ctx.body = {
             code : 0,
-            list : result[0]
+            list : result
         }
     }else{
         ctx.body = {
