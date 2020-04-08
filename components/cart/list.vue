@@ -1,6 +1,6 @@
 <template>
     <el-table
-    :data="tableData"
+    :data="list"
     style="width: 100%">
         <el-table-column
         label="项目"
@@ -31,14 +31,14 @@
 
 <script>
 export default {
-    data() {
-      return {
-        tableData: [{
-          name: '2016-05-02',
-          price: 100,
-          count: 1
-        }]
-      }
+    props : {
+        list : {
+            type : Array,
+            default : []
+        }
+    },
+    mounted(){
+        console.log(this.list)
     }
 }
 </script>
