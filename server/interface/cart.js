@@ -6,10 +6,10 @@ const router = new Router()
 
 router.post('/cart/createCart',async ctx=>{
 	if(ctx.isAuthenticated()){
-        let {cartNo,price,cartName} = ctx.request.body
+        let {cartNo,price,cartName,imgs} = ctx.request.body
         let user = ctx.session.passport.user,
             time = new Date()
-        let cart = new Cart({cartNo,price,cartName,username:user,time})
+        let cart = new Cart({cartNo,price,cartName,username:user,time,imgs})
         let result = await cart.save()
         if(result){
             ctx.body = {

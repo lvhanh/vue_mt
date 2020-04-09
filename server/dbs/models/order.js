@@ -1,13 +1,17 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-const CartSchema = new Schema({
-	cartNo : {
+const OrderSchema = new Schema({
+	OrderNo : {
         type : String,
         required : true
-    },
-    price :{
-        type : String,
+	},
+	count : {
+		type : Number,
+		required : true
+	},
+    total :{
+        type : Number,
         required : true
     },
     cartName : {
@@ -21,13 +25,17 @@ const CartSchema = new Schema({
     time : {
         type : String,
         required : true
-    },
-    imgs : {
-        type : Array,
-        required : true
-    }
+	},
+	imgs : {
+		type : Array,
+		default : []
+	},
+	status : {
+		type : Number,
+		required : true
+	}
 })
 
-const Cart = mongoose.model('Cart',CartSchema)
+const Order = mongoose.model('Order',OrderSchema)
 
-export default Cart
+export default Order

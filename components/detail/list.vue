@@ -38,7 +38,8 @@ export default {
 			axios.post('/cart/createCart',{
 				cartNo : id,
 				price : items.cost,
-				cartName : items.name
+				cartName : items.name,
+				imgs     : items.photo
 			}).then(function(res){
 				if(res.status===200&&res.data.code===0){
 					_this.$router.push({path: 'cart',query: {id:id}})
