@@ -10,30 +10,28 @@ router.post('/order/createOrder',async ctx=>{
         let {cartNo,price,count,orderNo} = ctx.request.body
         let user = ctx.session.passport.user,
             time = new Date()
-				let cart = Cart.findOne({cartNo:cartNo})
-				let order = new Order({
-					orderNo : orderNo,
-					count   : count,
-					total   : price*count,
-					cartName: cart.cartName,
-					username: user,
-					time    : time,
-					imgs    : cart.imgs[0],
-					status  : 0
-				})
+		let cart = await Cart.findOne({cartNo:cartNo})
+		let order = new Order({
+			orderNo : orderNo,
+			count   : count,
+			total   : price*count,
+			cartName: cart.cartName,
+			username: user,
+			time    : time,
+			imgs    : cart.imgs,
+			status  : 0
+		})
         let result = await order.save()
         if(result){
-					await cart.remove()
+			await cart.remove()
             ctx.body = {
                 code : 0,
-								msg  : '',
-								cart
+				msg  : ''
             }
         }else{
             ctx.body = {
                 code : -1,
-								msg  : 'fail',
-								cart
+				msg  : 'fail'
             }
         }
     }else {
@@ -74,6 +72,21 @@ router.post('/order/getOrder',async ctx=>{
 				}
 			}
 		}
+})
+
+router.post('/order/status',async ctx=>{
+	let orderNo = ctx.request.body.orderNo
+	let result = await Order.findOne({orderNo:orderNo})
+	if(result){
+		await result.update({status : 1})
+		ctx.body = {
+			code : 0
+		}
+	}else {
+		ctx.body = {
+			code : -1
+		}
+	}
 })
 
 export default router

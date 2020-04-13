@@ -7,7 +7,7 @@
           :key="idx">
           <el-col :span="4">
             <img
-              :src="item.img"
+              :src="item.imgs"
               alt="">
           </el-col>
           <el-col :span="10">

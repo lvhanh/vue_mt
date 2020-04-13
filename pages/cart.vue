@@ -42,7 +42,6 @@ export default {
 			    random = Math.random()*100000000
             let id = `${year}${random.toString().substr(0,6)}`,
                 _this = this
-                console.log(this.lists)
             axios.post('/order/createOrder',{
                 cartNo : cartNo,
                 price  : Number(_this.lists[0].price),
@@ -50,11 +49,18 @@ export default {
                 orderNo: id
             }).then(function(res){
                 if(res.status===200&&res.data.code===0){
-                    _this.$alert('订单提交成功','成功',{
-                        confirmButtonText: '确定'
-                    })
-                    console.log(res.data.msg)
+                    window.open('/pay?orderNo='+id)
+                    setTimeout(function(){
+                        _this.$alert('付款成功','成功',{
+                            confirmButtonText:'确定',
+                            callback: action=>{
+                                _this.$router.push({path:'order'})
+                            }
+                        })
+                    },1000)
                 }
+            }).catch(function(err){
+                console.log(err)
             })
         }
     },

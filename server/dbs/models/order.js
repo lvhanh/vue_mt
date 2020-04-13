@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const OrderSchema = new Schema({
-	OrderNo : {
+	orderNo : {
         type : String,
         required : true
 	},
@@ -27,8 +27,7 @@ const OrderSchema = new Schema({
         required : true
 	},
 	imgs : {
-		type : Array,
-		default : []
+		type : Array
 	},
 	status : {
 		type : Number,

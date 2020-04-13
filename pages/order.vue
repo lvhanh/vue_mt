@@ -43,11 +43,6 @@
             <mlist :cur="cur"/>
           </el-tab-pane>
           <el-tab-pane
-            label="待使用"
-            name="unuse">
-            <mlist :cur="cur"/>
-          </el-tab-pane>
-          <el-tab-pane
             label="待评价"
             name="unreplay">
             <mlist :cur="cur"/>
@@ -73,11 +68,40 @@ export default {
   },
 	methods : {
 		handleClick(tab){
-			this.activeName = tab.name
+      this.activeName = tab.name
+      if(this.activeName === 'unpay'){
+        this.cur = this.list.filter(item=>{
+          return item.status === 0
+        })
+      }
+      else if(this.activeName === 'unreplay'){
+        this.cur = this.list.filter(item=>{
+          return item.status === 1
+        })
+      }else if(this.activeName === 'all'){
+        this.cur = this.list
+      }
 		}
-	},
+  },
+  mounted(){
+    this.cur = this.list
+  },
 	async asyncData(ctx){
-		
+    let res = await ctx.$axios.post('/order/getOrder')
+    if(res.status===200){
+      return {
+        list : res.data.list.map(item=>{
+          return {
+            name : item.cartName,
+            imgs : item.imgs,
+            count: item.count,
+            total: item.total,
+            status: item.status,
+            statusTxt: item.status===0?'未付款':'已付款'
+          }
+        })
+      }
+    }
 	}
 }
 </script>
