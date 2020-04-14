@@ -18,7 +18,7 @@
 					<el-input placeholder="请输入用户名" class="input"
 					v-model="form.username">
 					</el-input>
-					<el-input placeholder="请输入密码" class="input"
+					<el-input placeholder="请输入密码" class="input" type="password"
 					v-model="form.pwd" @keyup.enter.native="Login">
 					</el-input>
 					<a href="">忘记密码？</a>
@@ -66,7 +66,7 @@ export default {
 						if(location.name = hostname){
 							_this.$router.go(-1)
 						}else{
-							_this.$router.push({path : '/'})
+							_this.$router.push({path : 'home'})
 						}
 					}else{
 						_this.msg = res.data.msg
