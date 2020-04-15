@@ -2,31 +2,31 @@
 	<div class="m-nav">
 		<ul class="nav">
 			<li class="list">
-				<nuxt-link to="/myMt">我的美团</nuxt-link>
+				<nuxt-link to="/home">我的美团</nuxt-link>
 				<dl class="navDown">
-					<dd><nuxt-link to="/myList">我的订单</nuxt-link></dd>
-					<dd><nuxt-link to="/myCollect">我的收藏</nuxt-link></dd>
-					<dd><nuxt-link to="/myTicket">抵用券</nuxt-link></dd>
-					<dd><nuxt-link to="/set">账户设置</nuxt-link></dd>
+					<dd><nuxt-link to="/order">我的订单</nuxt-link></dd>
+					<dd><nuxt-link to="/home">我的收藏</nuxt-link></dd>
+					<dd><nuxt-link to="/home">抵用券</nuxt-link></dd>
+					<dd><nuxt-link to="/home">账户设置</nuxt-link></dd>
 				</dl>
 			</li>
-			<li><nuxt-link to="/myPhone">手机APP</nuxt-link></li>
+			<li><nuxt-link to="/home">手机APP</nuxt-link></li>
 			<li class="list sell">
 				商家中心
 				<dl class="navDown">
-					<dd><nuxt-link to="/sellCenter">美团餐饮商户中心</nuxt-link></dd>
-					<dd><nuxt-link to="/sellLogin">登录商家中心</nuxt-link></dd>
-					<dd><nuxt-link to="/cashier">美团智能收银</nuxt-link></dd>
-					<dd><nuxt-link to="/cooperation">我想合作</nuxt-link></dd>
-					<dd><nuxt-link to="/openShop">手机免费开店</nuxt-link></dd>
+					<dd><nuxt-link to="/home">美团餐饮商户中心</nuxt-link></dd>
+					<dd><nuxt-link to="/home">登录商家中心</nuxt-link></dd>
+					<dd><nuxt-link to="/home">美团智能收银</nuxt-link></dd>
+					<dd><nuxt-link to="/home">我想合作</nuxt-link></dd>
+					<dd><nuxt-link to="/home">手机免费开店</nuxt-link></dd>
 				</dl>
 			</li>
 			<li class="list">
 				美团规则
 				<dl>
-					<dd><nuxt-link to="/ruleCenter">规则中心</nuxt-link></dd>
-					<dd><nuxt-link to="/ruleDirect">规则目录</nuxt-link></dd>
-					<dd><nuxt-link to="pingyiyuan">规则评议院</nuxt-link></dd>
+					<dd><nuxt-link to="/home">规则中心</nuxt-link></dd>
+					<dd><nuxt-link to="/home">规则目录</nuxt-link></dd>
+					<dd><nuxt-link to="/home">规则评议院</nuxt-link></dd>
 				</dl>
 			</li>
 			<li class="list dh">

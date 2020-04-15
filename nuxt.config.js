@@ -51,6 +51,14 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    proxy: true,
+    credentials:true
+  },
+  proxy : {
+    '/api' : {
+      target: 'http://94.191.14.58/',
+      changeOrigin: true
+    }
   },
 
   /*

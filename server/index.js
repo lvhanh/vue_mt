@@ -7,7 +7,7 @@ import mongoose from 'mongoose'
 import bodyParser from 'koa-bodyparser'
 import session from 'koa-generic-session'
 import Redis from 'koa-redis'
-import json from 'koa-json'
+import cors from 'koa-cors'
 import dbConfig from './dbs/config'
 import passport from './interface/utils/passport'
 import users from './interface/users'
@@ -34,6 +34,10 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use(cors({
+  credentials:true
+}))
+
 mongoose.connect(dbConfig.mongodb)
 
 // Import and Set Nuxt.js options
@@ -55,12 +59,12 @@ async function start() {
     await builder.build()
   }
 
-  app.use(users.routes())
-  app.use(city.routes())
-  app.use(search.routes())
-  app.use(product.routes())
-  app.use(cart.routes())
-  app.use(order.routes())
+  app.use(users.routes()).use(users.allowedMethods())
+  app.use(city.routes()).use(city.allowedMethods())
+  app.use(search.routes()).use(search.allowedMethods())
+  app.use(product.routes()).use(product.allowedMethods())
+  app.use(cart.routes()).use(cart.allowedMethods())
+  app.use(order.routes()).use(order.allowedMethods())
 
   app.use(ctx => {
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset

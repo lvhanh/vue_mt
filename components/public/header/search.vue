@@ -3,7 +3,7 @@
 		<div class="searchBar">
 			<el-row>
 				<el-col :span="6" class="mt-img">
-					<nuxt-link to="/">
+					<nuxt-link to="/home">
 						<img src="//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="美团">
 					</nuxt-link>
 				</el-col>
@@ -27,7 +27,7 @@
 						</dl>
 						<dl class="hasInput" v-if="isInput">
 							<dd v-for="(item,index) in searchList" :key="index">
-								<router-link :to="{path: '/product',query: {city: city,keyword: item.name}}">{{ item.name }}</router-link>
+								<router-link :to="{path: 'product',query: {city: city,keyword: item.name}}">{{ item.name }}</router-link>
 								<!-- <a :href="'/product?city='+city+'&keyword='+item.name">{{ item.name }}</a> -->
 							</dd>
 						</dl>
@@ -38,12 +38,12 @@
 		</div>
 		<div class="search-list">
 			<ul>
-				<li class="takeout"><nuxt-link to="/">美团外卖</nuxt-link></li>
-				<li class="mymovie"><nuxt-link to="/">猫眼电影</nuxt-link></li>
-				<li class="hotel"><nuxt-link to="/">美团酒店</nuxt-link></li>
-				<li class="apartment"><nuxt-link to="/">民宿/公寓</nuxt-link></li>
-				<li class="business"><nuxt-link to="/">商家入驻</nuxt-link></li>
-				<li class="benefit"><nuxt-link to="/">美团公益</nuxt-link></li>
+				<li class="takeout"><nuxt-link to="/home">美团外卖</nuxt-link></li>
+				<li class="mymovie"><nuxt-link to="/home">猫眼电影</nuxt-link></li>
+				<li class="hotel"><nuxt-link to="/home">美团酒店</nuxt-link></li>
+				<li class="apartment"><nuxt-link to="/home">民宿/公寓</nuxt-link></li>
+				<li class="business"><nuxt-link to="/home">商家入驻</nuxt-link></li>
+				<li class="benefit"><nuxt-link to="/home">美团公益</nuxt-link></li>
 			</ul>
 		</div>
 	</div>
@@ -105,7 +105,7 @@ export default {
 		button : function(){
 			let _search = this.search,
 				_city   = this.city
-			//location.href=`/product?city=${_city}&keyword=${_search}`
+			// location.href=`/product?city=${_city}&keyword=${_search}`
 			this.$router.push({path: 'product',query: {city: _city,keyword: _search}})
 		},
 		submit : function(){

@@ -47,11 +47,12 @@ router.post('/order/getOrder',async ctx=>{
 			ctx.body = {
 				code : -1,
 				msg  : '请登录',
-				list : {}
+				list : []
 			}
 		}else {
 			try {
-				let result = await Order.find()
+				let user = ctx.session.passport.user
+				let result = await Order.find({username:user})
 				if(result){
 					ctx.body = {
 						code : 0,
@@ -60,7 +61,7 @@ router.post('/order/getOrder',async ctx=>{
 				}else {
 					ctx.body = {
 						code : -1,
-						list : {}
+						list : []
 					}
 				}
 			}
@@ -68,7 +69,7 @@ router.post('/order/getOrder',async ctx=>{
 				ctx.body = {
 					code : -1,
 					msg  : err,
-					list : {}
+					list : []
 				}
 			}
 		}

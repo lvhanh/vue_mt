@@ -2,7 +2,7 @@
 	<div class="login">
 		<div class="header">
 			<div class="img">
-				<a href="/" class="logo"></a>
+				<a href="/home" class="logo"></a>
 			</div>
 		</div>
 		<div class="content">

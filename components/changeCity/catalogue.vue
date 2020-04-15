@@ -59,7 +59,7 @@ export default {
         },
         click : function(){
             window.sessionStorage.setItem('changeCity',this.enter)
-			location.href='/'
+			this.$router.push({path:'/home'})
         }
     }
 }

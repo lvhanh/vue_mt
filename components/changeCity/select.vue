@@ -117,11 +117,11 @@ export default {
         },300),
         handleSelect : function(){
             window.sessionStorage.setItem('changeCity',this.selectCity)
-            location.href='/'
+            this.$router.push({path:'/home'})
         },
         go : function(){
             window.sessionStorage.setItem('changeCity',this.mcity)
-            location.href='/'
+            this.$router.push({path:'/home'})
         }
     }
 }
