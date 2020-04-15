@@ -21,8 +21,20 @@ router.post('/users/signup', async function(ctx){
 					code : -1,
 					msg  : '验证码已过期'
 				}
-				return false
-			}	
+			}else {
+				let newUser = await User.create({username, password, email})
+				if(newUser){
+					ctx.body = {
+						code : 0,
+						msg  : '注册成功！',
+					}
+				}else{
+					ctx.body = {
+						code : -1,
+						msg  : '注册失败'
+					}
+				}
+			}
 		}else{
 			ctx.body = {
 				code : -1,
@@ -43,19 +55,6 @@ router.post('/users/signup', async function(ctx){
 		}
 		return
 	}
-	let newUser = await User.create({username, password, email})
-	if(newUser){
-		ctx.body = {
-			code : 0,
-			msg  : '注册成功！',
-		}
-	}else{
-		ctx.body = {
-			code : -1,
-			msg  : '注册失败'
-		}
-	}
-	
 })
 
 router.post('/users/signin',async function(ctx,next){
